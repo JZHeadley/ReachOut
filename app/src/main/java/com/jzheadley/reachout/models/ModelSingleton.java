@@ -1,7 +1,6 @@
 package com.jzheadley.reachout.models;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
@@ -11,7 +10,6 @@ import com.jzheadley.reachout.models.services.DynamoMapperClient;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class ModelSingleton {
     private static final String TAG = "ModelSingleton";
@@ -81,6 +79,7 @@ public class ModelSingleton {
             for (Proposal prop : newProposals) {
                 DynamoMapperClient.getMapper().save(prop);
             }
+
             newProposals.clear();
             DynamoDBScanExpression propScanExpression = new DynamoDBScanExpression();
             PaginatedScanList<Proposal> propResult = DynamoMapperClient.getMapper().scan(Proposal.class, propScanExpression);
