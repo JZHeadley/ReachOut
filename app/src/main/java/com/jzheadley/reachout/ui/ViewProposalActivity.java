@@ -19,6 +19,7 @@ public class ViewProposalActivity extends AppCompatActivity {
     ThreeButtonView loanPurchase;
     ThreeButtonView reason;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

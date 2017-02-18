@@ -43,6 +43,7 @@ public class NessieService {
             public void onSuccess(Object result) {
                 PostResponse<Account> response = (PostResponse<Account>) result;
                 Account newAccount = response.getObjectCreated();
+                Log.i(TAG, "createAccount/onSuccess:  accountNumber: " + accountNumber);
                 proposal.submitted_online(newAccount.getAccountNumber());
             }
             @Override
