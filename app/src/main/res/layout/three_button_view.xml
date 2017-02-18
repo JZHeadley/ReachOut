@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="50dp"
+    android:layout_width="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:src="@drawable/zephyr" />
+
+    <EditText
+        android:id="@+id/view_three_button_edit_text"
+        android:inputType="text"
+        android:layout_height="50dp"
+        android:layout_width="200dp" />
+
+    <Button
+        android:background="@drawable/ic_play_arrow"
+        android:id="@+id/view_three_button_play_prompt"
+        android:layout_height="50dp"
+        android:layout_width="50dp" />
+
+    <Button
+        android:background="@drawable/ic_mic"
+        android:id="@+id/view_three_button_add_response"
+        android:layout_height="50dp"
+        android:layout_width="50dp" />
+
+    <Button
+        android:background="@drawable/ic_volume_up"
+        android:id="@+id/view_three_button_play_response"
+        android:layout_height="50dp"
+        android:layout_width="50dp" />
+</LinearLayout>
