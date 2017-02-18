@@ -23,7 +23,7 @@ public class BorrowerActivity extends BaseActivity {
     private static final String TAG = "BorrowerActivity";
     public ProgressBar riskBar;
     public int riskStatus = 0;
-    private Person person;
+
     private RecyclerView.Adapter adapter;
 
     @Override
@@ -35,8 +35,10 @@ public class BorrowerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        ArrayList<Proposal> proposals = ModelSingleton.getInstance().listProposalsForPerson(person);
+        // Person currentUser = (Person) this.getApplicationContext().getSharedPreferences("currentUser",MODE_PRIVATE);
+        //ArrayList<Proposal> proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
+        //TODO: replace this with the above code once currentUser is implemented
+        ArrayList<Proposal> proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
         int creditScore = ModelUtilities.creditScore(proposals);
 
         adapter = new MyProposalsAdapter(proposals);
