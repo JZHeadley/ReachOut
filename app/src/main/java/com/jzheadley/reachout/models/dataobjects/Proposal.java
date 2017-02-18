@@ -14,33 +14,29 @@ public class Proposal {
     public static final int STATE_FUNDED = 3;
     public static final int STATE_CASH_WITHDRAWN = 4;
     public static final int STATE_CASH_REPAID = 5;
-
-    private String proposalId;
-    private String personId;
-    private int state = STATE_INCOMPLETE;
-
-    private int amountBorrowed = -1;
-
-    private int amountToBeRepayed = -1;
-    private int monthsOfLoan = -1;
-
-    private String accountNumber = null;
-
-    private Long dateFunded;
-    private String lenderAccountNumber = null;
-
-    private Long dateRepaid; //Actual, not due date
-
     public String businessDescription = null;
     public String purchaseDescription = null;
     public String planDescription = null;
-
     public Set<String> pictures = new HashSet<>();
     public Set<String> endorsingLeaders = new HashSet<>();
+    private String proposalId;
+    private String personId;
+    private int state = STATE_INCOMPLETE;
+    private int amountBorrowed = -1;
+    private int amountToBeRepayed = -1;
+    private int monthsOfLoan = -1;
+    private String accountNumber = null;
+    private Long dateFunded;
+    private String lenderAccountNumber = null;
+    private Long dateRepaid; //Actual, not due date
 
 
     public Proposal(String proposalId) {
         this.proposalId = proposalId;
+    }
+
+    public Proposal() {
+
     }
 
     /* State changes */

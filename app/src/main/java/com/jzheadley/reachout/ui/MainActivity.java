@@ -1,6 +1,8 @@
 package com.jzheadley.reachout.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.jzheadley.reachout.R;
 
@@ -14,4 +16,10 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.test1:
+                startActivity(new Intent(this,BorrowerActivity.class));
+        }
+    }
 }
