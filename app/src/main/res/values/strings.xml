@@ -7,6 +7,7 @@
     <string name="prompt_money_making">How do you make money?</string>
     <string name="prompt_loan_purchase">What will you purchase with your loan</string>
     <string name="prompt_loan_how_help">How will this loan help you make money?</string>
+    <string name="prompt_show_to_banker">Show this screen to the banker to get your money</string>
     <string name="customer_id">58a7effd1756fc834d904a75</string>
     <string name="title_activity_borrower">BorrowerActivity</string>
 </resources>

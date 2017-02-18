@@ -57,6 +57,18 @@ public class ThreeButtonView extends LinearLayout {
         threeButtonEditText.setVisibility(visibility);
     }
 
+    public void setAddResponseVisibility(int visibility) {
+        threeButtonAddResponse.setVisibility(visibility);
+    }
+
+    public void setPlayResponseVisibility(int visibility) {
+        threeButtonPlayResponse.setVisibility(visibility);
+    }
+
+    public void setPlayPromptVisibility(int visibility) {
+        threeButtonPlayPrompt.setVisibility(visibility);
+    }
+
     public void setPromptText(String promptText) {
         threeButtonPlayPrompt.setContentDescription(promptText);
     }
