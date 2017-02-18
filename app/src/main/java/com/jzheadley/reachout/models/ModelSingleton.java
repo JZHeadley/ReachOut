@@ -48,9 +48,11 @@ public class ModelSingleton {
         for (Person pers : newPeople) {
             DynamoMapperClient.getMapper().save(pers);
         }
+        newPeople.clear();
         for (Proposal prop : newProposals) {
             DynamoMapperClient.getMapper().save(prop);
         }
+        newProposals.clear();
     }
 
     /* Getters/Setters */
