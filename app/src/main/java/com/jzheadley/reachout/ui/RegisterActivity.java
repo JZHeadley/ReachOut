@@ -122,7 +122,8 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
             public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
                 materialLockView.setDisplayMode(MaterialLockView.DisplayMode.Correct);
                 person.setPassHash(Base64.encodeToString(pattern.toString().getBytes(), Base64.DEFAULT));
-
+                Log.d(TAG, "onPatternDetected: " + person.getPassHash());
+                dialog.dismiss();
             }
         });
         dialog.show();
