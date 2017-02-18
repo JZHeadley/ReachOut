@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
-import com.jzheadley.reachout.models.dataobjects.Borrower;
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.reimaginebanking.api.nessieandroidsdk.NessieError;
 import com.reimaginebanking.api.nessieandroidsdk.NessieResultsListener;
@@ -13,10 +13,8 @@ import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionMedium;
 import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionType;
 import com.reimaginebanking.api.nessieandroidsdk.models.Account;
 import com.reimaginebanking.api.nessieandroidsdk.models.Transfer;
-import com.reimaginebanking.api.nessieandroidsdk.requestclients.AccountClient;
 import com.reimaginebanking.api.nessieandroidsdk.requestclients.NessieClient;
 import com.reimaginebanking.api.nessieandroidsdk.models.PostResponse;
-import com.reimaginebanking.api.nessieandroidsdk.requestservices.AccountService;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -28,8 +26,8 @@ public class NessieService {
     private static NessieClient client = NessieClient.getInstance(App.get().getResources().getString(R.string.nessie_api_key));
     private String date = DateFormat.getDateTimeInstance().format(new Date());
 
-    public void checkFunds(Borrower borrower) { //check for funding
-        final ArrayList<Proposal>props = borrower.getProposals();
+    public void checkFunds(Person borrower) { //check for funding
+        final ArrayList<Proposal> props = new ArrayList<>(); //TODO: we will create a singleton to get you all this;
 
         for(int i = 0; i < props.size(); i++)
         {

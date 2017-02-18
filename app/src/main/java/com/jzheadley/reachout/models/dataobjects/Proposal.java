@@ -1,21 +1,21 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by pjhud on 2/18/2017.
  */
 
 public class Proposal {
-    public static int STATE_INCOMPLETE = 0;
-    public static int STATE_SUBMITTED_OFFLINE = 1;
-    public static int STATE_SUBMITTED_ONLINE = 2;
-    public static int STATE_FUNDED = 3;
-    public static int STATE_CASH_WITHDRAWN = 4;
-    public static int STATE_CASH_REPAID = 5;
+    public static final int STATE_INCOMPLETE = 0;
+    public static final int STATE_SUBMITTED_OFFLINE = 1;
+    public static final int STATE_SUBMITTED_ONLINE = 2;
+    public static final int STATE_FUNDED = 3;
+    public static final int STATE_CASH_WITHDRAWN = 4;
+    public static final int STATE_CASH_REPAID = 5;
 
-    private int proposalId;
+    private String proposalId;
     private int state = STATE_INCOMPLETE;
 
     private int amountBorrowed = -1;
@@ -34,11 +34,11 @@ public class Proposal {
     public String purchaseDescription = null;
     public String planDescription = null;
 
-    public ArrayList<String> pictures = new ArrayList<>();
-    public ArrayList<String> endorsingLeaders = new ArrayList<>();
+    public Set<String> pictures = new HashSet<>();
+    public Set<String> endorsingLeaders = new HashSet<>();
 
 
-    public Proposal(int proposalId) {
+    public Proposal(String proposalId) {
         this.proposalId = proposalId;
     }
 
@@ -71,11 +71,11 @@ public class Proposal {
 
 
     /* Getters / Setters */
-    public int getProposalId() {
+    public String getProposalId() {
         return proposalId;
     }
 
-    public void setProposalId(int proposalId) {
+    public void setProposalId(String proposalId) {
         this.proposalId = proposalId;
     }
 
@@ -168,19 +168,19 @@ public class Proposal {
         this.planDescription = planDescription;
     }
 
-    public ArrayList<String> getPictures() {
+    public Set<String> getPictures() {
         return pictures;
     }
 
-    public void setPictures(ArrayList<String> pictures) {
+    public void setPictures(HashSet<String> pictures) {
         this.pictures = pictures;
     }
 
-    public ArrayList<String> getEndorsingLeaders() {
+    public Set<String> getEndorsingLeaders() {
         return endorsingLeaders;
     }
 
-    public void setEndorsingLeaders(ArrayList<String> endorsingLeaders) {
+    public void setEndorsingLeaders(HashSet<String> endorsingLeaders) {
         this.endorsingLeaders = endorsingLeaders;
     }
 

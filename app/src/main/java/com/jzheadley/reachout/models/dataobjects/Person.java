@@ -1,5 +1,7 @@
 package com.jzheadley.reachout.models.dataobjects;
 
+import java.util.ArrayList;
+
 /**
  * Created by pjhud on 2/18/2017.
  */
@@ -11,6 +13,25 @@ public class Person {
     protected double lattitude;
     protected String profile_picture;
     protected int passHash;
+    private boolean isLeader;
+    private String idOfConfirmingLeader;
+    private ArrayList<String> proposals;
+
+
+    public Person(String personId, boolean isLeader, String name, double longitude, double lattitude,
+                    int passHash, String idOfConfirmingLeader) {
+        this.personId = personId;
+        this.isLeader = isLeader;
+        this.name = name;
+        this.passHash = passHash;
+        this.longitude = longitude;
+        this.lattitude = lattitude;
+        this.profile_picture = null;
+
+        this.idOfConfirmingLeader = idOfConfirmingLeader;
+        this.proposals = new ArrayList<>();
+
+    }
 
     public String getPersonId() {
         return personId;
@@ -46,12 +67,13 @@ public class Person {
     }
 
     public boolean isLeader() {
-        return (this instanceof Leader);
+        return isLeader;
     }
 
-    public boolean isBorrower() {
-        return (this instanceof Borrower);
+    public void setLeader(boolean leader) {
+        isLeader = leader;
     }
+
 
     public double getLattitude() {
         return lattitude;
@@ -67,5 +89,24 @@ public class Person {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+
+
+
+    public String getIdOfConfirmingLeader() {
+        return idOfConfirmingLeader;
+    }
+
+    public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
+        this.idOfConfirmingLeader = idOfConfirmingLeader;
+    }
+
+    public ArrayList<String> getProposals() {
+        return proposals;
+    }
+
+    public void setProposals(ArrayList<String> proposals) {
+        this.proposals = proposals;
     }
 }

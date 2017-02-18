@@ -1,32 +1,29 @@
 package com.jzheadley.reachout;
 
-import com.jzheadley.reachout.models.dataobjects.Borrower;
-import com.jzheadley.reachout.models.dataobjects.Leader;
-import com.jzheadley.reachout.models.dataobjects.Picture;
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.Date;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Constants {
 
-    public ArrayList<Borrower> testBorrowers = new ArrayList<>();
-    public ArrayList<Leader> testLeaders = new ArrayList<>();
+    public Set<Person> people = new HashSet<>();
+
+    public Set<Proposal> proposals = new HashSet<>();
 
     public Constants() {
-        Borrower joe = new Borrower("id2", "Joe Farmer", 12.3425, 13.533535, 264643647, "id1");
+        Person joe = new Person("id2", false, "Joe Farmer", 12.3425, 13.533535, 264643647, "id1");
         joe.setProfile_picture("http://bit.ly/mikesspic");
 
-        testBorrowers.add(joe);
-        Proposal joeIrrigation = new Proposal(508706863);
+        people.add(joe);
+        Proposal joeIrrigation = new Proposal("508706863");
         joeIrrigation.setState(Proposal.STATE_CASH_REPAID);
         joeIrrigation.setAccountNumber("5380980253");
         joeIrrigation.setAmountBorrowed(50);
         joeIrrigation.setAmountToBeRepayed(75);
-        joeIrrigation.setDateFunded(new Date(System.currentTimeMillis()));
-        joeIrrigation.setDateRepaid(new Date(System.currentTimeMillis() + 500000));
+        joeIrrigation.setDateFunded(System.currentTimeMillis());
+        joeIrrigation.setDateRepaid(System.currentTimeMillis() + 500000);
         joeIrrigation.setLenderAccountNumber("96936708608");
         joeIrrigation.setMonthsOfLoan(5);
         joeIrrigation.setBusinessDescription("I am a farmer");
@@ -34,16 +31,17 @@ public class Constants {
         joeIrrigation.setPlanDescription("I'm going to use the battery for my irrigation pump");
 
         joeIrrigation.getPictures().add("http://bit.ly/joescanal");
-        joe.getProposals().add(joeIrrigation);
+
+        proposals.add(joeIrrigation);
+        joe.getProposals().add(joeIrrigation.getProposalId());
 
 
-        Leader mike = new Leader("id2", "Mullah Mike", 12.3425, 13.533535, 264643647, "id1");
-        testLeaders.add(mike);
+        Person mike = new Person("id2", true, "Mullah Mike", 12.3425, 13.533535, 264643647, "id1");
+        people.add(mike);
 
         mike.setProfile_picture("http://bit.ly/mikesspic");
 
-        mike.getBorrowerIds().add(joe.getPersonId());
-        mike.getEndorsedProposals().add(joeIrrigation);
+        mike.getProposals().add(joeIrrigation.getProposalId());
         joeIrrigation.getEndorsingLeaders().add(mike.getPersonId());
 
     }
