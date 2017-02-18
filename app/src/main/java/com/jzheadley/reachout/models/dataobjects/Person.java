@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 @DynamoDBTable(tableName = "ReachOutPersons")
 public class Person {
-    protected String personId;
     protected String name;
-    protected double longitude;
-    protected double lattitude;
-    protected String profile_picture;
-    protected int passHash;
+    private String personId;
+    private double longitude;
+    private double lattitude;
+    private String profile_picture;
+    private int passHash;
     private boolean isLeader;
     private String idOfConfirmingLeader;
     private ArrayList<String> proposals;
