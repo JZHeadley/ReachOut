@@ -51,6 +51,9 @@ dependencies {
 
     compile 'me.zhanghai.android.patternlock:library:2.0.4'
 
+    // gson
+    compile 'com.google.code.gson:gson:1.7.2'
+
     // https://github.com/zagum/SpeechRecognitionView/
     compile 'com.github.zagum:SpeechRecognitionView:1.0.2'
 

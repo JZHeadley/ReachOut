@@ -1,7 +1,5 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import android.location.Location;
-
 /**
  * Created by pjhud on 2/18/2017.
  */
@@ -11,7 +9,7 @@ public class Person {
     protected String name;
     protected double longitude;
     protected double lattitude;
-    protected Picture profile_picture;
+    protected String profile_picture;
     protected int passHash;
 
     public String getPersonId() {
@@ -31,11 +29,11 @@ public class Person {
     }
 
 
-    public Picture getProfile_picture() {
+    public String getProfile_picture() {
         return profile_picture;
     }
 
-    public void setProfile_picture(Picture profile_picture) {
+    public void setProfile_picture(String profile_picture) {
         this.profile_picture = profile_picture;
     }
 

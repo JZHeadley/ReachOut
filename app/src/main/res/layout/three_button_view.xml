@@ -7,7 +7,7 @@
     <ImageView
         android:layout_height="50dp"
         android:layout_width="50dp"
-        android:src="@drawable/zephyr" />
+        android:src="@drawable/ic_elder" />
 
     <EditText
         android:id="@+id/view_three_button_edit_text"

@@ -1,6 +1,7 @@
 package com.jzheadley.reachout.models.dataobjects;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Created by pjhud on 2/18/2017.
@@ -29,7 +30,12 @@ public class Proposal {
 
     private Date dateRepaid; //Actual, not due date
 
-    private Pitch pitch;
+    public String businessDescription = null;
+    public String purchaseDescription = null;
+    public String planDescription = null;
+
+    public ArrayList<String> pictures = new ArrayList<>();
+    public ArrayList<String> endorsingLeaders = new ArrayList<>();
 
 
     public Proposal(int proposalId) {
@@ -138,12 +144,44 @@ public class Proposal {
         this.dateRepaid = dateRepaid;
     }
 
-    public Pitch getPitch() {
-        return pitch;
+    public String getBusinessDescription() {
+        return businessDescription;
     }
 
-    public void setPitch(Pitch pitch) {
-        this.pitch = pitch;
+    public void setBusinessDescription(String businessDescription) {
+        this.businessDescription = businessDescription;
+    }
+
+    public String getPurchaseDescription() {
+        return purchaseDescription;
+    }
+
+    public void setPurchaseDescription(String purchaseDescription) {
+        this.purchaseDescription = purchaseDescription;
+    }
+
+    public String getPlanDescription() {
+        return planDescription;
+    }
+
+    public void setPlanDescription(String planDescription) {
+        this.planDescription = planDescription;
+    }
+
+    public ArrayList<String> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(ArrayList<String> pictures) {
+        this.pictures = pictures;
+    }
+
+    public ArrayList<String> getEndorsingLeaders() {
+        return endorsingLeaders;
+    }
+
+    public void setEndorsingLeaders(ArrayList<String> endorsingLeaders) {
+        this.endorsingLeaders = endorsingLeaders;
     }
 
 

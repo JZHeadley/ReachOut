@@ -3,7 +3,6 @@ package com.jzheadley.reachout;
 import com.jzheadley.reachout.models.dataobjects.Borrower;
 import com.jzheadley.reachout.models.dataobjects.Leader;
 import com.jzheadley.reachout.models.dataobjects.Picture;
-import com.jzheadley.reachout.models.dataobjects.Pitch;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.net.MalformedURLException;
@@ -18,13 +17,11 @@ public class Constants {
 
     public Constants() {
         Borrower joe = new Borrower("id2", "Joe Farmer", 12.3425, 13.533535, 264643647, "id1");
-        try {
-            joe.setProfile_picture(new Picture(25535, "Joe", 12.3425, 13.533535, new URL("http://bit.ly/joespic")));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        joe.setProfile_picture("http://bit.ly/mikesspic");
+
         testBorrowers.add(joe);
         Proposal joeIrrigation = new Proposal(508706863);
+        joeIrrigation.setState(Proposal.STATE_CASH_REPAID);
         joeIrrigation.setAccountNumber("5380980253");
         joeIrrigation.setAmountBorrowed(50);
         joeIrrigation.setAmountToBeRepayed(75);
@@ -32,28 +29,22 @@ public class Constants {
         joeIrrigation.setDateRepaid(new Date(System.currentTimeMillis() + 500000));
         joeIrrigation.setLenderAccountNumber("96936708608");
         joeIrrigation.setMonthsOfLoan(5);
-        joeIrrigation.setPitch(new Pitch(1512535,"I am a farmer", "Battery", "I'm going to use the battery for my irrigation pump"));
-        joeIrrigation.setState(Proposal.STATE_CASH_REPAID);
-        try {
-            Picture joesCanal = new Picture(25535, "This is my irrigation canal", 12.3425, 13.533535, new URL("http://bit.ly/joescanal"));
-            joeIrrigation.getPitch().getPictures().add(joesCanal);
+        joeIrrigation.setBusinessDescription("I am a farmer");
+        joeIrrigation.setPurchaseDescription("Battery");
+        joeIrrigation.setPlanDescription("I'm going to use the battery for my irrigation pump");
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        joeIrrigation.getPictures().add("http://bit.ly/joescanal");
         joe.getProposals().add(joeIrrigation);
 
 
         Leader mike = new Leader("id2", "Mullah Mike", 12.3425, 13.533535, 264643647, "id1");
         testLeaders.add(mike);
 
-        try {
-            joe.setProfile_picture(new Picture(25535, "Joe", 12.3425, 13.533535, new URL("http://bit.ly/mikesspic")));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        mike.setProfile_picture("http://bit.ly/mikesspic");
+
         mike.getBorrowerIds().add(joe.getPersonId());
         mike.getEndorsedProposals().add(joeIrrigation);
+        joeIrrigation.getEndorsingLeaders().add(mike.getPersonId());
 
     }
 
