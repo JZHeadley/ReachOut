@@ -1,7 +1,5 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import android.location.Location;
-
 import java.util.ArrayList;
 
 /**
@@ -9,17 +7,19 @@ import java.util.ArrayList;
  */
 
 public class Leader extends Person {
-    private int idOfConfirmingNGO;
-    private ArrayList<Integer> borrowerIds;
+    private String idOfConfirmingNGO;
+    private ArrayList<String> borrowerIds;
     private ArrayList<Proposal> endorsedProposals;
 
-    public Leader(String personId, String name, Location location,
-                  int passHash, int idOfConfirmingNGO) {
+    public Leader(String personId, String name, double longitude, double lattitude,
+                  int passHash, String idOfConfirmingNGO) {
         this.personId = personId;
         this.name = name;
         this.passHash = passHash;
 
-        this.location = location;
+        this.longitude = longitude;
+        this.lattitude = lattitude;
+
         this.profile_picture = null;
 
         this.idOfConfirmingNGO = idOfConfirmingNGO;
@@ -27,19 +27,19 @@ public class Leader extends Person {
         this.endorsedProposals = new ArrayList<>();
     }
 
-    public int getIdOfConfirmingNGO() {
+    public String getIdOfConfirmingNGO() {
         return idOfConfirmingNGO;
     }
 
-    public void setIdOfConfirmingNGO(int idOfConfirmingNGO) {
+    public void setIdOfConfirmingNGO(String idOfConfirmingNGO) {
         this.idOfConfirmingNGO = idOfConfirmingNGO;
     }
 
-    public ArrayList<Integer> getBorrowerIds() {
+    public ArrayList<String> getBorrowerIds() {
         return borrowerIds;
     }
 
-    public void setBorrowerIds(ArrayList<Integer> borrowerIds) {
+    public void setBorrowerIds(ArrayList<String> borrowerIds) {
         this.borrowerIds = borrowerIds;
     }
 

@@ -9,7 +9,8 @@ import android.location.Location;
 public class Person {
     protected String personId;
     protected String name;
-    protected Location location;
+    protected double longitude;
+    protected double lattitude;
     protected Picture profile_picture;
     protected int passHash;
 
@@ -29,13 +30,6 @@ public class Person {
         this.name = name;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Picture getProfile_picture() {
         return profile_picture;
@@ -59,5 +53,21 @@ public class Person {
 
     public boolean isBorrower() {
         return (this instanceof Borrower);
+    }
+
+    public double getLattitude() {
+        return lattitude;
+    }
+
+    public void setLattitude(double lattitude) {
+        this.lattitude = lattitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 }

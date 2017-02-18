@@ -18,7 +18,7 @@ public class NessieService {
     private String date = DateFormat.getDateTimeInstance().format(new Date());
 
 
-    public void fundProposal(Proposal proposal, int lenderAccountNumber) { //check for funding
+    public void fundProposal(Proposal proposal, String lenderAccountNumber) { //check for funding
         Transfer transfer;
         if (proposal.getState() == 2) {
             transfer = new Transfer(getTransferId(), date, "Completed", TransactionType.P2P, TransactionMedium.BALANCE, Integer.toString(lenderAccountNumber), Integer.toString(proposal.getAccountNumber()), proposal.getAmountBorrowed(), "Lender to proposal");

@@ -11,15 +11,17 @@ import java.net.URL;
 public class Picture {
     private int pictureId;
     private String description;
-    private Location location;
+    private double longitude;
+    private double lattitude;
     private Object image; //TODO: How are we going to represent this?
     private URL imageUrl;
 
 
     public Picture(int pictureId, String description,
-                   Location location, URL imageUrl) {
+                   double longitude, double lattitude, URL imageUrl) {
         this.pictureId = pictureId;
-        this.location = location;
+        this.longitude = longitude;
+        this.lattitude = lattitude;
         this.image = null;
         this.imageUrl = imageUrl;
     }
@@ -40,13 +42,6 @@ public class Picture {
         this.description = description;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public Object getImage() {
         return image;
@@ -54,5 +49,29 @@ public class Picture {
 
     public void setImage(Object image) {
         this.image = image;
+    }
+
+    public double getLattitude() {
+        return lattitude;
+    }
+
+    public void setLattitude(double lattitude) {
+        this.lattitude = lattitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public URL getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(URL imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

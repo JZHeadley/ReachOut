@@ -22,19 +22,17 @@ public class Proposal {
     private int amountToBeRepayed = -1;
     private int monthsOfLoan = -1;
 
-    private int routingNumber = -1;
-    private int accountNumber = -1;
+    private String accountNumber = null;
 
     private Date dateFunded;
-    private int lenderRoutingNumber = -1;
-    private int lenderAccountNumber = -1;
+    private String lenderAccountNumber = null;
 
     private Date dateRepaid; //Actual, not due date
 
     private Pitch pitch;
 
 
-    Proposal(int proposalId) {
+    public Proposal(int proposalId) {
         this.proposalId = proposalId;
     }
 
@@ -44,16 +42,14 @@ public class Proposal {
         return true;
     }
 
-    public void submitted_online(int accountNumber) {
+    public void submitted_online(String accountNumber) {
         state = STATE_SUBMITTED_ONLINE;
-        this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
     }
 
-    public void funded(int lenderAccountNumber) {
+    public void funded(String lenderAccountNumber) {
         setLenderAccountNumber(lenderAccountNumber);
         state = STATE_FUNDED;
-        this.lenderRoutingNumber = lenderRoutingNumber;
         this.lenderAccountNumber = lenderAccountNumber;
         this.dateFunded = new Date(System.currentTimeMillis());
     }
@@ -101,19 +97,12 @@ public class Proposal {
         this.amountToBeRepayed = amountToBeRepayed;
     }
 
-    public int getRoutingNumber() {
-        return routingNumber;
-    }
 
-    public void setRoutingNumber(int routingNumber) {
-        this.routingNumber = routingNumber;
-    }
-
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -133,19 +122,11 @@ public class Proposal {
         this.dateFunded = dateFunded;
     }
 
-    public int getLenderRoutingNumber() {
-        return lenderRoutingNumber;
-    }
-
-    public void setLenderRoutingNumber(int lenderRoutingNumber) {
-        this.lenderRoutingNumber = lenderRoutingNumber;
-    }
-
-    public int getLenderAccountNumber() {
+    public String getLenderAccountNumber() {
         return lenderAccountNumber;
     }
 
-    public void setLenderAccountNumber(int lenderAccountNumber) {
+    public void setLenderAccountNumber(String lenderAccountNumber) {
         this.lenderAccountNumber = lenderAccountNumber;
     }
 

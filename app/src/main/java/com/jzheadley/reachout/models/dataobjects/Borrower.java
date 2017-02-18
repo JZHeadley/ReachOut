@@ -1,7 +1,5 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import android.location.Location;
-
 import java.util.ArrayList;
 
 /**
@@ -9,17 +7,17 @@ import java.util.ArrayList;
  */
 
 public class Borrower extends Person {
-    private int idOfConfirmingLeader;
+    private String idOfConfirmingLeader;
     private ArrayList<Proposal> proposals;
 
 
-    public Borrower(int personId, String name, Location location,
-                    int passHash, int idOfConfirmingLeader) {
+    public Borrower(String personId, String name, double longitude, double lattitude,
+                    int passHash, String idOfConfirmingLeader) {
         this.personId = personId;
         this.name = name;
         this.passHash = passHash;
-
-        this.location = location;
+        this.longitude = longitude;
+        this.lattitude = lattitude;
         this.profile_picture = null;
 
         this.idOfConfirmingLeader = idOfConfirmingLeader;
@@ -27,11 +25,11 @@ public class Borrower extends Person {
 
     }
 
-    public int getIdOfConfirmingLeader() {
+    public String getIdOfConfirmingLeader() {
         return idOfConfirmingLeader;
     }
 
-    public void setIdOfConfirmingLeader(int idOfConfirmingLeader) {
+    public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
         this.idOfConfirmingLeader = idOfConfirmingLeader;
     }
 
