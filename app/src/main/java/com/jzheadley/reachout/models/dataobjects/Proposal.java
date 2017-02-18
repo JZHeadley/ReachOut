@@ -25,10 +25,10 @@ public class Proposal {
 
     private String accountNumber = null;
 
-    private Date dateFunded;
+    private Long dateFunded;
     private String lenderAccountNumber = null;
 
-    private Date dateRepaid; //Actual, not due date
+    private Long dateRepaid; //Actual, not due date
 
     public String businessDescription = null;
     public String purchaseDescription = null;
@@ -57,7 +57,7 @@ public class Proposal {
         setLenderAccountNumber(lenderAccountNumber);
         state = STATE_FUNDED;
         this.lenderAccountNumber = lenderAccountNumber;
-        this.dateFunded = new Date(System.currentTimeMillis());
+        this.dateFunded = System.currentTimeMillis();
     }
 
     public void cashWithdrawn() {
@@ -66,7 +66,7 @@ public class Proposal {
 
     public void cashRepaid() {
         state = STATE_CASH_REPAID;
-        this.dateRepaid = new Date(System.currentTimeMillis());
+        this.dateRepaid = System.currentTimeMillis();
     }
 
 
@@ -120,11 +120,11 @@ public class Proposal {
         this.monthsOfLoan = monthsOfLoan;
     }
 
-    public Date getDateFunded() {
+    public Long getDateFunded() {
         return dateFunded;
     }
 
-    public void setDateFunded(Date dateFunded) {
+    public void setDateFunded(Long dateFunded) {
         this.dateFunded = dateFunded;
     }
 
@@ -136,11 +136,11 @@ public class Proposal {
         this.lenderAccountNumber = lenderAccountNumber;
     }
 
-    public Date getDateRepaid() {
+    public Long getDateRepaid() {
         return dateRepaid;
     }
 
-    public void setDateRepaid(Date dateRepaid) {
+    public void setDateRepaid(Long dateRepaid) {
         this.dateRepaid = dateRepaid;
     }
 
