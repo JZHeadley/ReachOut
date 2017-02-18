@@ -33,6 +33,9 @@
             android:parentActivityName=".ui.BorrowerActivity" />
         <activity android:name=".ui.ProposalCreationActivity" />
         <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.ViewProposalActivity"
+            android:parentActivityName=".ui.BorrowerActivity">
+        </activity>
     </application>
 
 </manifest>

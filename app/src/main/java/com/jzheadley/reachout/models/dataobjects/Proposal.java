@@ -46,7 +46,7 @@ public class Proposal implements Parcelable {
     private Long dateFunded = 0L;
     private String lenderAccountNumber = " ";
     private Long dateRepaid = 0L; //Actual, not due date
-    private NessieService nessieService;
+    private String creditScore;
 
     public Proposal(String proposalId) {
         this.proposalId = proposalId;
@@ -74,6 +74,7 @@ public class Proposal implements Parcelable {
         this.dateFunded = (Long) in.readValue(Long.class.getClassLoader());
         this.lenderAccountNumber = in.readString();
         this.dateRepaid = (Long) in.readValue(Long.class.getClassLoader());
+        this.creditScore = in.readString();
     }
 
     public void setEndorsingLeaders(Set<String> endorsingLeaders) {
@@ -271,6 +272,15 @@ public class Proposal implements Parcelable {
         this.endorsingLeaders = endorsingLeaders;
     }
 
+    @DynamoDBAttribute
+    public String getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(String creditScore) {
+        this.creditScore = creditScore;
+    }
+
     @Override
     public int describeContents() {
         return 2;
@@ -293,5 +303,7 @@ public class Proposal implements Parcelable {
         dest.writeValue(this.dateFunded);
         dest.writeString(this.lenderAccountNumber);
         dest.writeValue(this.dateRepaid);
+        dest.writeString(this.creditScore);
     }
+
 }

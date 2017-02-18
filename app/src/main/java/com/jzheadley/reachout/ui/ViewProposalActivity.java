@@ -20,12 +20,13 @@ public class ViewProposalActivity extends AppCompatActivity {
     ThreeButtonView loanLength;
     ThreeButtonView loanPurchase;
     ThreeButtonView reason;
-    Proposal proposal = getIntent().getExtras().getParcelable("singleProposal");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_proposal);
+        Proposal proposal = getIntent().getExtras().getParcelable("singleProposal");
         loanAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_loan_amount));
         loanRepayAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_repayment_amount));
         loanLength = ((ThreeButtonView) findViewById(R.id.three_button_get_loan_length));
