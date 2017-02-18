@@ -3,10 +3,9 @@ package com.jzheadley.reachout.models.services;
 
 import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
-import com.jzheadley.reachout.models.Proposal;
+import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionMedium;
 import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionType;
-import com.reimaginebanking.api.nessieandroidsdk.models.Address;
 import com.reimaginebanking.api.nessieandroidsdk.models.Transfer;
 import com.reimaginebanking.api.nessieandroidsdk.requestclients.NessieClient;
 
@@ -19,7 +18,7 @@ public class NessieService {
     private String date = DateFormat.getDateTimeInstance().format(new Date());
 
 
-    public void fundProposal(Proposal proposal, int lenderAccountNumber) {
+    public void fundProposal(Proposal proposal, int lenderAccountNumber) { //check for funding
         Transfer transfer;
         if (proposal.getState() == 2) {
             transfer = new Transfer(getTransferId(), date, "Completed", TransactionType.P2P, TransactionMedium.BALANCE, Integer.toString(lenderAccountNumber), Integer.toString(proposal.getAccountNumber()), proposal.getAmountBorrowed(), "Lender to proposal");
@@ -38,7 +37,7 @@ public class NessieService {
     }
 
     public void repay(Proposal proposal, int bankAccountNumber)
-    {
+    { //check
         Transfer transfer;
         if(proposal.getState() == 4)
         {
