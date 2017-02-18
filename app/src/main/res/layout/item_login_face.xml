@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
+    android:layout_height="100dp"
     android:layout_width="match_parent"
     app:cardCornerRadius="4dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/login_face_card"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="100dp"
+        android:layout_width="match_parent">
 
-        <android.support.v4.widget.CircleImageView
+        <ImageView
             android:id="@+id/persons_face_img"
-            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_height="100dp"
             android:layout_width="wrap_content" />
 
         <TextView
+            android:gravity="right|center_vertical"
             android:id="@+id/persons_name_text"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-    </LinearLayout>
+            android:layout_width="200dp" />
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

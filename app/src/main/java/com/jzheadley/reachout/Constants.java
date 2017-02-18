@@ -14,8 +14,8 @@ public class Constants {
     public Set<Proposal> proposals = new HashSet<>();
 
     public Constants() {
-        Person joe = new Person("id2", false, "Joe Farmer", 12.3425, 13.533535, 264643647, "id1");
-        joe.setProfile_picture("http://bit.ly/mikesspic");
+        Person joe = new Person("id2", false, "Joe Farmer", 12.3425, 13.533535, "264643647", "id1");
+        joe.setProfile_picture("http://imgur.com/oazRdv1");
 
         people.add(joe);
         Proposal joeIrrigation = new Proposal("508706863");
@@ -37,7 +37,7 @@ public class Constants {
         joe.getProposals().add(joeIrrigation.getProposalId());
 
 
-        Person mike = new Person("id2", true, "Mullah Mike", 12.3425, 13.533535, 264643647, "id1");
+        Person mike = new Person("id2", true, "Mullah Mike", 12.3425, 13.533535, "264643647", "id1");
         people.add(mike);
 
         mike.setProfile_picture("http://bit.ly/mikesspic");

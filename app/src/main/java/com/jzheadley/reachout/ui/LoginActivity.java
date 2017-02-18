@@ -6,9 +6,8 @@ import android.support.v7.widget.RecyclerView;
 
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
-import com.jzheadley.reachout.models.dataobjects.Person;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class LoginActivity extends BaseActivity {
 
@@ -24,7 +23,7 @@ public class LoginActivity extends BaseActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        LoginFacesAdapter adapter = new LoginFacesAdapter((List<Person>) ModelSingleton.getInstance().getPeople().values());
+        LoginFacesAdapter adapter = new LoginFacesAdapter(new ArrayList<>(ModelSingleton.getInstance().getPeople().values()));
 
         recyclerView.setAdapter(adapter);
     }

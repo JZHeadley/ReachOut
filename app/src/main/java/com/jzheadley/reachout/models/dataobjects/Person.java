@@ -8,26 +8,31 @@ import java.util.ArrayList;
 
 @DynamoDBTable(tableName = "ReachOutPersons")
 public class Person {
-    protected String name;
-    private String personId;
-    private double longitude;
-    private double lattitude;
-    private String profile_picture;
-    private int passHash;
-    private boolean isLeader;
-    private String idOfConfirmingLeader;
+    protected String name = " ";
+    private String personId = " ";
+    private double longitude = 0;
+    private double lattitude = 0;
+    private String profile_picture = " ";
+    private String passHash = " ";
+    private boolean isLeader = false;
+    private String idOfConfirmingLeader = " ";
     private ArrayList<String> proposals;
 
 
+    public Person() {
+        proposals = new ArrayList<>();
+        proposals.add(" ");
+    }
+
     public Person(String personId, boolean isLeader, String name, double longitude, double lattitude,
-                    int passHash, String idOfConfirmingLeader) {
+                  String passHash, String idOfConfirmingLeader) {
         this.personId = personId;
         this.isLeader = isLeader;
         this.name = name;
         this.passHash = passHash;
         this.longitude = longitude;
         this.lattitude = lattitude;
-        this.profile_picture = null;
+        this.profile_picture = " ";
 
         this.idOfConfirmingLeader = idOfConfirmingLeader;
         this.proposals = new ArrayList<>();
@@ -37,6 +42,10 @@ public class Person {
     @DynamoDBHashKey(attributeName = "personId")
     public String getPersonId() {
         return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public void setPerson_id(String personId) {
@@ -62,11 +71,11 @@ public class Person {
     }
 
     @DynamoDBAttribute
-    public int getPassHash() {
+    public String getPassHash() {
         return passHash;
     }
 
-    public void setPassHash(int passHash) {
+    public void setPassHash(String passHash) {
         this.passHash = passHash;
     }
 
@@ -96,8 +105,6 @@ public class Person {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
-
 
 
     public String getIdOfConfirmingLeader() {

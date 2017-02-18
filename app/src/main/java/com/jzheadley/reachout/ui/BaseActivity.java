@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.jzheadley.reachout.Constants;
 import com.jzheadley.reachout.R;
+import com.jzheadley.reachout.models.ModelSingleton;
+import com.jzheadley.reachout.models.dataobjects.Person;
+
+import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -16,6 +21,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants constants = new Constants();
+        ModelSingleton.getInstance().createPerson(new ArrayList<Person>(constants.people).get(0));
     }
 
     @Override
