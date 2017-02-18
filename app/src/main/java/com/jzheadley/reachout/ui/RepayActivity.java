@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jzheadley.reachout.Constants;
@@ -26,49 +27,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-public class ProposalCreationActivity extends AppCompatActivity implements UploadTaskCallback {
+public class RepayActivity extends AppCompatActivity implements UploadTaskCallback {
     private static final int PICK_IMAGE_REQUEST = 1;
-    private static final String TAG = "ProposalCreationActivit";
-    ThreeButtonView loanAmount;
-    ThreeButtonView loanRepayAmount;
-    ThreeButtonView moneyMaking;
-    ThreeButtonView loanLength;
-    ThreeButtonView loanPurchase;
-    ThreeButtonView reason;
-    private Proposal proposal;
+    private static final String TAG = "RepayActivity";
+    ThreeButtonView getCash;
+    TextView accountNumber;
+    Proposal proposal = getIntent().getExtras().getParcelable("proposal");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_proposal_creation);
-        proposal = new Proposal();
-        loanAmount = ((ThreeButtonView) findViewById(R.id.three_button_loan_amount));
-        loanRepayAmount = ((ThreeButtonView) findViewById(R.id.three_button_repayment_amount));
-        loanLength = ((ThreeButtonView) findViewById(R.id.three_button_loan_length));
-        moneyMaking = ((ThreeButtonView) findViewById(R.id.three_button_money_making));
-        loanPurchase = ((ThreeButtonView) findViewById(R.id.three_button_loan_purchase));
-        reason = ((ThreeButtonView) findViewById(R.id.three_button_how_money_help));
-
-        loanAmount.setPromptText(getString(R.string.prompt_loan_amount));
-        loanRepayAmount.setPromptText(getString(R.string.prompt_loan_repayment_amount));
-        loanLength.setPromptText(getString(R.string.prompt_loan_repayment_date));
-        moneyMaking.setPromptText(getString(R.string.prompt_money_making));
-        loanPurchase.setPromptText(getString(R.string.prompt_loan_purchase));
-        reason.setPromptText(getString(R.string.prompt_loan_how_help));
+        setContentView(R.layout.activity_repay);
     }
 
     @Override
     public void success(String url) {
         Log.d(TAG, "success: Things worked! Heres the url to the image you just uploaded " + url);
         // TODO: 2/18/2017 set the url for the proposal
-        proposal.getPictures().add(url);
     }
 
     @Override
     public void cancel(String s) {
 
         Toast.makeText(getApplicationContext(), s,
-            Toast.LENGTH_LONG).show();
+                Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -110,22 +93,6 @@ public class ProposalCreationActivity extends AppCompatActivity implements Uploa
                 }
                 break;
         }
-    }
-
-    public void onClick(View view) {
-        proposal.setProposalId(String.valueOf((new Random()).nextInt(Integer.MAX_VALUE)));
-        proposal.setAmountBorrowed(Integer.parseInt(loanAmount.getInputText()));
-        proposal.setAmountToBeRepayed(Integer.parseInt(loanRepayAmount.getInputText()));
-        proposal.setMonthsOfLoan(Integer.parseInt(loanLength.getInputText()));
-        proposal.setBusinessDescription(moneyMaking.getInputText());
-        proposal.setPurchaseDescription(loanPurchase.getInputText());
-        proposal.setPlanDescription(reason.getInputText());
-        proposal.setPersonId("JoeFarmer");
-        proposal.submit_offline();
-
-        ModelSingleton.getInstance().createProposal(proposal);
-        ModelSingleton.getInstance().synchWithDB();
-        finish();
     }
 }
 

@@ -7,6 +7,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanLis
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.models.services.DynamoMapperClient;
+import com.jzheadley.reachout.models.services.NessieService;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +19,7 @@ public class ModelSingleton {
     private HashMap<String, Proposal> proposals = new HashMap<>();
     private HashSet<Person> newPeople = new HashSet<>();
     private HashSet<Proposal> newProposals = new HashSet<>();
+    private NessieService nessieService;
 
     private ModelSingleton() {
         synchWithDB();
@@ -43,7 +45,6 @@ public class ModelSingleton {
     }
 
     public void createProposal(Proposal proposal) {
-        proposal.submitted_online(proposal.getAccountNumber());
         newProposals.add(proposal);
         addProposal(proposal);
     }
@@ -79,6 +80,7 @@ public class ModelSingleton {
 
 
             for (Proposal prop : newProposals) {
+                nessieService.createAccount(prop);
                 DynamoMapperClient.getMapper().save(prop);
             }
 
@@ -89,6 +91,7 @@ public class ModelSingleton {
             for (Proposal prop : propResult) {
                 addProposal(prop);
             }
+
             return null;
         }
     }

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
+import com.jzheadley.reachout.models.services.NessieService;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class Proposal implements Parcelable {
     private Long dateFunded = 0L;
     private String lenderAccountNumber = " ";
     private Long dateRepaid = 0L; //Actual, not due date
+    private NessieService nessieService;
 
     public Proposal(String proposalId) {
         this.proposalId = proposalId;
@@ -110,9 +112,9 @@ public class Proposal implements Parcelable {
     }
 
     public void submitted_online(String accountNumber) {
-        state = STATE_SUBMITTED_ONLINE;
-        this.accountNumber = accountNumber;
-    }
+            state = STATE_SUBMITTED_ONLINE;
+            this.accountNumber = accountNumber;
+        }
 
 
     /* Getters / Setters */

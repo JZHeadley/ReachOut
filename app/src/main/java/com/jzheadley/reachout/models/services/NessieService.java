@@ -26,6 +26,11 @@ public class NessieService {
     private static final String TAG = "NessieService";
     private static NessieClient client = NessieClient.getInstance(App.get().getResources().getString(R.string.nessie_api_key));
     private String date = DateFormat.getDateTimeInstance().format(new Date());
+    private String accountNumber;
+
+    public void createAccount(Proposal proposal){
+        proposal.submitted_online(accountNumber);
+    }
 
     public void checkFunds() { //check for funding
         //final ArrayList<Proposal> props = new ArrayList<>(); //TODO: we will create a singleton to get you all this;
