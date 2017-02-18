@@ -1,4 +1,6 @@
-package com.jzheadley.reachout.models;
+package com.jzheadley.reachout.models.dataobjects;
+
+import com.jzheadley.reachout.models.dataobjects.Pitch;
 
 import java.sql.Date;
 
@@ -15,7 +17,7 @@ public class Proposal {
     public static int STATE_CASH_REPAID = 5;
 
     private int proposalId;
-    private int state = 0;
+    private int state = STATE_INCOMPLETE;
 
     private int amountBorrowed = -1;
 
@@ -46,10 +48,15 @@ public class Proposal {
 
     public void submitted_online(int routingNumber, int accountNumber) {
         state = STATE_SUBMITTED_ONLINE;
+        this.routingNumber = routingNumber;
+        this.accountNumber = accountNumber;
     }
 
     public void funded(int lenderRoutingNumber, int lenderAccountNumber) {
         state = STATE_FUNDED;
+        this.lenderRoutingNumber = lenderRoutingNumber;
+        this.lenderAccountNumber = lenderAccountNumber;
+        this.dateFunded = new Date(System.currentTimeMillis());
     }
 
     public void cashWithdrawn() {
@@ -58,6 +65,7 @@ public class Proposal {
 
     public void cashRepaid() {
         state = STATE_CASH_REPAID;
+        this.dateRepaid = new Date(System.currentTimeMillis());
     }
 
 
