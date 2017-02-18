@@ -34,6 +34,13 @@ public class Constants {
         joeIrrigation.setMonthsOfLoan(5);
         joeIrrigation.setPitch(new Pitch(1512535,"I am a farmer", "Battery", "I'm going to use the battery for my irrigation pump"));
         joeIrrigation.setState(Proposal.STATE_CASH_REPAID);
+        try {
+            Picture joesCanal = new Picture(25535, "This is my irrigation canal", 12.3425, 13.533535, new URL("http://bit.ly/joescanal"));
+            joeIrrigation.getPitch().getPictures().add(joesCanal);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         joe.getProposals().add(joeIrrigation);
 
 
