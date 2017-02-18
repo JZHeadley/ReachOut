@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
+import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.reimaginebanking.api.nessieandroidsdk.NessieError;
@@ -26,12 +27,13 @@ public class NessieService {
     private static NessieClient client = NessieClient.getInstance(App.get().getResources().getString(R.string.nessie_api_key));
     private String date = DateFormat.getDateTimeInstance().format(new Date());
 
-    public void checkFunds(Person borrower) { //check for funding
-        final ArrayList<Proposal> props = new ArrayList<>(); //TODO: we will create a singleton to get you all this;
+    public void checkFunds() { //check for funding
+        //final ArrayList<Proposal> props = new ArrayList<>(); //TODO: we will create a singleton to get you all this;
 
-        for(int i = 0; i < props.size(); i++)
+        //for(int i = 0; i < props.size(); i++)
+        for (String prop : ModelSingleton.getInstance().getProposals().keySet())
         {
-            final Proposal proposal = props.get(i);
+            final Proposal proposal = ModelSingleton.getInstance().getProposals().get(prop);
             client.ACCOUNT.getAccount(proposal.getAccountNumber(), new NessieResultsListener() {
                 @Override
                 public void onSuccess(Object result) {

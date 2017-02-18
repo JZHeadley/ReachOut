@@ -2,6 +2,7 @@ package com.jzheadley.reachout.models;
 
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
+import com.jzheadley.reachout.models.services.DynamoMapperClient;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,6 +44,15 @@ public class ModelSingleton {
         addProposal(proposal);
     }
 
+    public void synchWithDB() {
+        for (Person pers : newPeople) {
+            DynamoMapperClient.getMapper().save(pers);
+        }
+        for (Proposal prop : newProposals) {
+            DynamoMapperClient.getMapper().save(prop);
+        }
+    }
+
     /* Getters/Setters */
 
     public HashMap<String, Person> getPeople() {
@@ -53,11 +63,4 @@ public class ModelSingleton {
         return proposals;
     }
 
-    public HashSet<Person> getNewPeople() {
-        return newPeople;
-    }
-
-    public HashSet<Proposal> getNewProposals() {
-        return newProposals;
-    }
 }

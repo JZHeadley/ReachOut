@@ -1,8 +1,12 @@
 package com.jzheadley.reachout.models.dataobjects;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
+
 import java.util.ArrayList;
 
-
+@DynamoDBTable(tableName = "Person")
 public class Person {
     protected String personId;
     protected String name;
@@ -30,6 +34,7 @@ public class Person {
 
     }
 
+    @DynamoDBHashKey(attributeName = "personId")
     public String getPersonId() {
         return personId;
     }
@@ -38,6 +43,7 @@ public class Person {
         this.personId = personId;
     }
 
+    @DynamoDBAttribute
     public String getName() {
         return name;
     }
@@ -46,7 +52,7 @@ public class Person {
         this.name = name;
     }
 
-
+    @DynamoDBAttribute
     public String getProfile_picture() {
         return profile_picture;
     }
@@ -55,6 +61,7 @@ public class Person {
         this.profile_picture = profile_picture;
     }
 
+    @DynamoDBAttribute
     public int getPassHash() {
         return passHash;
     }
@@ -63,6 +70,7 @@ public class Person {
         this.passHash = passHash;
     }
 
+    @DynamoDBAttribute
     public boolean isLeader() {
         return isLeader;
     }
@@ -71,7 +79,7 @@ public class Person {
         isLeader = leader;
     }
 
-
+    @DynamoDBAttribute
     public double getLattitude() {
         return lattitude;
     }
@@ -80,6 +88,7 @@ public class Person {
         this.lattitude = lattitude;
     }
 
+    @DynamoDBAttribute
     public double getLongitude() {
         return longitude;
     }

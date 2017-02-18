@@ -1,12 +1,16 @@
 package com.jzheadley.reachout.models.dataobjects;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
+
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by pjhud on 2/18/2017.
  */
-
+@DynamoDBTable(tableName = "Proposal")
 public class Proposal {
     public static final int STATE_INCOMPLETE = 0;
     public static final int STATE_SUBMITTED_OFFLINE = 1;
@@ -68,6 +72,7 @@ public class Proposal {
 
 
     /* Getters / Setters */
+    @DynamoDBHashKey(attributeName = "proposalId")
     public String getProposalId() {
         return proposalId;
     }
@@ -76,6 +81,7 @@ public class Proposal {
         this.proposalId = proposalId;
     }
 
+    @DynamoDBAttribute
     public String getPersonId() {
         return personId;
     }
@@ -84,6 +90,7 @@ public class Proposal {
         this.personId = personId;
     }
 
+    @DynamoDBAttribute
     public int getState() {
         return state;
     }
@@ -92,6 +99,7 @@ public class Proposal {
         this.state = state;
     }
 
+    @DynamoDBAttribute
     public int getAmountBorrowed() {
         return amountBorrowed;
     }
@@ -100,6 +108,7 @@ public class Proposal {
         this.amountBorrowed = amountBorrowed;
     }
 
+    @DynamoDBAttribute
     public int getAmountToBeRepayed() {
         return amountToBeRepayed;
     }
@@ -109,6 +118,7 @@ public class Proposal {
     }
 
 
+    @DynamoDBAttribute
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -117,6 +127,7 @@ public class Proposal {
         this.accountNumber = accountNumber;
     }
 
+    @DynamoDBAttribute
     public int getMonthsOfLoan() {
         return monthsOfLoan;
     }
@@ -125,6 +136,7 @@ public class Proposal {
         this.monthsOfLoan = monthsOfLoan;
     }
 
+    @DynamoDBAttribute
     public Long getDateFunded() {
         return dateFunded;
     }
@@ -133,6 +145,7 @@ public class Proposal {
         this.dateFunded = dateFunded;
     }
 
+    @DynamoDBAttribute
     public String getLenderAccountNumber() {
         return lenderAccountNumber;
     }
@@ -141,6 +154,7 @@ public class Proposal {
         this.lenderAccountNumber = lenderAccountNumber;
     }
 
+    @DynamoDBAttribute
     public Long getDateRepaid() {
         return dateRepaid;
     }
@@ -149,6 +163,7 @@ public class Proposal {
         this.dateRepaid = dateRepaid;
     }
 
+    @DynamoDBAttribute
     public String getBusinessDescription() {
         return businessDescription;
     }
@@ -157,6 +172,7 @@ public class Proposal {
         this.businessDescription = businessDescription;
     }
 
+    @DynamoDBAttribute
     public String getPurchaseDescription() {
         return purchaseDescription;
     }
@@ -165,6 +181,7 @@ public class Proposal {
         this.purchaseDescription = purchaseDescription;
     }
 
+    @DynamoDBAttribute
     public String getPlanDescription() {
         return planDescription;
     }
@@ -173,6 +190,7 @@ public class Proposal {
         this.planDescription = planDescription;
     }
 
+    @DynamoDBAttribute
     public Set<String> getPictures() {
         return pictures;
     }
@@ -181,6 +199,7 @@ public class Proposal {
         this.pictures = pictures;
     }
 
+    @DynamoDBAttribute
     public Set<String> getEndorsingLeaders() {
         return endorsingLeaders;
     }
