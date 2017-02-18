@@ -1,11 +1,14 @@
 package com.jzheadley.reachout.models;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.models.services.DynamoMapperClient;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class ModelSingleton {
     private static ModelSingleton ourInstance = new ModelSingleton();
@@ -41,15 +44,39 @@ public class ModelSingleton {
         addProposal(proposal);
     }
 
+    public Set<Proposal> getProposalsForPerson(Person person) {
+        Set<Proposal> result = new HashSet<>();
+        for (String proposalId : person.getProposals()) {
+            result.add(proposals.get(proposalId));
+        }
+        return result;
+    }
+
     public void synchWithDB() {
         for (Person pers : newPeople) {
             DynamoMapperClient.getMapper().save(pers);
         }
         newPeople.clear();
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        PaginatedScanList<Person> result = DynamoMapperClient.getMapper().scan(Person.class, scanExpression);
+        result.size();
+        for (Person pers : result) {
+            addPerson(pers);
+        }
+
+
         for (Proposal prop : newProposals) {
             DynamoMapperClient.getMapper().save(prop);
         }
         newProposals.clear();
+        DynamoDBScanExpression propScanExpression = new DynamoDBScanExpression();
+        PaginatedScanList<Proposal> propResult = DynamoMapperClient.getMapper().scan(Proposal.class, propScanExpression);
+        propResult.size();
+        for (Proposal prop : propResult) {
+            addProposal(prop);
+        }
+
+
     }
 
     /* Getters/Setters */
