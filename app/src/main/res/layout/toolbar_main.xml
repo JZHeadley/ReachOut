@@ -20,18 +20,4 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/slide_in_menu_icon"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="end"
-        android:layout_height="30dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="30dp"
-        android:onClick="onDrawerClick"
-        android:src="@drawable/ic_menu" />
-
 </android.support.v7.widget.Toolbar>
