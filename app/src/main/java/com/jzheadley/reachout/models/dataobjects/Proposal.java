@@ -31,10 +31,10 @@ public class Proposal implements Parcelable {
             return new Proposal[size];
         }
     };
-    public String businessDescription = " ";
-    public String purchaseDescription = " ";
-    public String planDescription = " ";
-    public Set<String> pictures = new HashSet<>();
+    private String businessDescription = " ";
+    private String purchaseDescription = " ";
+    private String planDescription = " ";
+    private Set<String> pictures = new HashSet<>();
     private Set<String> endorsingLeaders = new HashSet<>();
     private String proposalId = " ";
     private String personId = " ";
