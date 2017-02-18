@@ -16,4 +16,6 @@
     <string name="response_loan_how_help">The use plan of the loan is </string>
     <string name="customer_id">58a7effd1756fc834d904a75</string>
     <string name="title_activity_borrower">BorrowerActivity</string>
+    <string name="not_already_a_member_register_here">Not already a member? Register Here!</string>
+    <string name="create_pattern_password">Create Pattern Password</string>
 </resources>
