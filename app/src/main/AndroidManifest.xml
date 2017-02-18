@@ -32,7 +32,7 @@
             android:name=".ui.CashActivity"
             android:parentActivityName=".ui.BorrowerActivity" />
         <activity android:name=".ui.ProposalCreationActivity" />
-        <activity android:name=".ui.ViewProposalActivity"></activity>
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>

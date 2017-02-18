@@ -1,6 +1,5 @@
 package com.jzheadley.reachout.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,7 @@ import com.jzheadley.reachout.models.dataobjects.Proposal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BorrowerActivity extends Activity {
+public class BorrowerActivity extends BaseActivity {
     private static final String TAG = "BorrowerActivity";
     public ProgressBar riskBar;
     public int riskStatus = 0;

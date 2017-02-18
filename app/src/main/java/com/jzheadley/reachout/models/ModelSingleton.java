@@ -1,6 +1,7 @@
 package com.jzheadley.reachout.models;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
@@ -56,6 +57,7 @@ public class ModelSingleton {
     }
 
     public HashMap<String, Person> getPeople() {
+        Log.d(TAG, "getPeople: Getting people");
         return people;
     }
 
@@ -67,6 +69,7 @@ public class ModelSingleton {
 
         @Override
         protected Void doInBackground(Void... params) {
+            Log.d(TAG, "doInBackground: adding people to database?");
             for (Person pers : newPeople) {
                 DynamoMapperClient.getMapper().save(pers);
             }

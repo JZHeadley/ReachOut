@@ -1,7 +1,6 @@
 package com.jzheadley.reachout.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,7 +8,7 @@ import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.views.ThreeButtonView;
 
-public class CashActivity extends AppCompatActivity {
+public class CashActivity extends BaseActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final String TAG = "CashActivity";
     private ThreeButtonView getCash;

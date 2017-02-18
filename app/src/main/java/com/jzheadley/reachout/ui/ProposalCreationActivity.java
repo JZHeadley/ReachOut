@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-public class ProposalCreationActivity extends AppCompatActivity implements UploadTaskCallback {
+public class ProposalCreationActivity extends BaseActivity implements UploadTaskCallback {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final String TAG = "ProposalCreationActivit";
     ThreeButtonView loanAmount;

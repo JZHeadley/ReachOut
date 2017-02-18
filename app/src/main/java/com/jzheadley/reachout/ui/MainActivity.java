@@ -20,6 +20,9 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.test1:
                 startActivity(new Intent(this, BorrowerActivity.class));
+                break;
+            case R.id.test2:
+                startActivity(new Intent(this, LoginActivity.class));
         }
     }
 }
