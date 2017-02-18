@@ -29,18 +29,17 @@ public class BorrowerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrower);
-        ModelSingleton.getInstance().synchWithDB();
         HashMap<String, Proposal> proposals = ModelSingleton.getInstance().getProposals();
-        adapter = new MyProposalsAdapter(new ArrayList<Proposal>(proposals.values()));
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                adapter.notifyDataSetChanged();
-            }
-        });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_proposals);
+        recyclerView.setHasFixedSize(true);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new MyProposalsAdapter(new ArrayList<Proposal>(proposals.values()));
         recyclerView.setAdapter(adapter);
         Log.d(TAG, "onCreate: " + proposals);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_proposal);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,9 +50,6 @@ public class BorrowerActivity extends Activity {
         });
 
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
 
 //        int creditScore = ModelUtilities.creditScore(proposals);
 //        riskBar = (ProgressBar)  findViewById(R.id.riskBar);

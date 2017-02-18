@@ -43,6 +43,7 @@ public class ModelSingleton {
     }
 
     public void createProposal(Proposal proposal) {
+        proposal.submitted_online(proposal.getAccountNumber());
         newProposals.add(proposal);
         addProposal(proposal);
     }

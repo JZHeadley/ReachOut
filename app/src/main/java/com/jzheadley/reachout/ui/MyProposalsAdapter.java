@@ -1,6 +1,8 @@
 package com.jzheadley.reachout.ui;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,19 +35,40 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyProposalViewHolder holder, int position) {
-        Proposal proposal = proposals.get(position);
+    public void onBindViewHolder(final MyProposalViewHolder holder, int position) {
+        final Proposal proposal = proposals.get(position);
         holder.proposalName.setText(proposal.getBusinessDescription());
         if (proposal.getPictures().size() > 1) {
             ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
             pictures.remove(0);
-            Glide.with(holder.itemView.getContext()).load(pictures.get(0))
+            Log.d(TAG, "onBindViewHolder: " + pictures.toString());
+
+            Glide.with(holder.itemView.getContext())
+                .load(pictures.get(0) + ".png")
                 .crossFade()
                 .fitCenter()
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.image_placeholder)
                 .into(new GlideDrawableImageViewTarget(holder.proposalImage));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent cashIntent = null;
+                    if (proposal.getState() == 3) {
+                        cashIntent = new Intent(v.getContext(), CashActivity.class);
+                    } else if (proposal.getState() == 4) {
+                        // cashIntent = new Intent(v.getContext(), RepayActivity.class);
+                    } else {
+                        Log.d(TAG, "onClick: Your Suspicions were correct");
+                        cashIntent = new Intent(v.getContext(), CashActivity.class);
+                    }
+
+
+                    cashIntent.putExtra("proposal", proposal);
+                    v.getContext().startActivity(cashIntent);
+                }
+            });
         }
     }
 

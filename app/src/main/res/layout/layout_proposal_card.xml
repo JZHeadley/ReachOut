@@ -9,20 +9,39 @@
 
     <RelativeLayout
         android:id="@+id/proposal_layout"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent">
 
         <ImageView
             android:id="@+id/proposal_image"
-            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_height="175dp"
             android:layout_width="match_parent"
-            android:src="@drawable/image_placeholder" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/proposal_name"
+            android:layout_below="@+id/proposal_image"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/proposal_something"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/proposal_image"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:textSize="12sp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
