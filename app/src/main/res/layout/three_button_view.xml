@@ -14,8 +14,7 @@
         android:id="@+id/view_three_button_edit_text"
         android:inputType="text"
         android:layout_height="50dp"
-
-        android:layout_width="200dp"
+        android:layout_width="175dp"
         android:maxLines="5"
         android:minLines="2" />
 

@@ -1,5 +1,10 @@
 package com.jzheadley.reachout.ui;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,7 +23,6 @@ import android.widget.Toast;
 import com.amnix.materiallockview.MaterialLockView;
 import com.jzheadley.reachout.Constants;
 import com.jzheadley.reachout.R;
-import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.sakebook.android.uploadhelper.UploadHelper;
 import com.sakebook.android.uploadhelper.UploadTaskCallback;
@@ -35,6 +39,11 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final String TAG = "RegisterActivity";
     private Person person;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +51,9 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
 
         person = new Person();
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
@@ -106,9 +118,11 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
         person.setName(((EditText) findViewById(R.id.name_input)).getText().toString());
         person.setLattitude((new Random()).nextDouble() * 100 - 50);
         person.setLongitude((new Random()).nextDouble() * 100 - 50);
+        person.setPerson_id(Integer.toString(((new Random()).nextInt(Integer.MAX_VALUE))));
         person.setLeader((new Random().nextBoolean()));
-        ModelSingleton.getInstance().createPerson(person);
-        ModelSingleton.getInstance().synchWithDB();
+        Intent intent = new Intent(view.getContext(), SetPatternPassword.class);
+        intent.putExtra("almost_whole_person", person);
+        view.getContext().startActivity(intent);
         finish();
     }
 
@@ -127,5 +141,41 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
             }
         });
         dialog.show();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+            .setName("Register Page") // TODO: Define a title for the content shown.
+            // TODO: Make sure this auto-generated URL is correct.
+            .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+            .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+            .setObject(object)
+            .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+            .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }

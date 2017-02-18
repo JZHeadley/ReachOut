@@ -1,5 +1,8 @@
 package com.jzheadley.reachout.models.dataobjects;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
@@ -7,7 +10,18 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 import java.util.ArrayList;
 
 @DynamoDBTable(tableName = "ReachOutPersons")
-public class Person {
+public class Person implements Parcelable {
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel source) {
+            return new Person(source);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
     protected String name = " ";
     private String personId = " ";
     private double longitude = 0;
@@ -15,9 +29,8 @@ public class Person {
     private String profile_picture = " ";
     private String passHash = " ";
     private boolean isLeader = false;
-   // private String idOfConfirmingLeader = " ";
+    // private String idOfConfirmingLeader = " ";
     private ArrayList<String> proposals;
-
 
     public Person() {
         proposals = new ArrayList<>();
@@ -37,6 +50,17 @@ public class Person {
         //this.idOfConfirmingLeader = idOfConfirmingLeader;
         this.proposals = new ArrayList<>();
 
+    }
+
+    protected Person(Parcel in) {
+        this.name = in.readString();
+        this.personId = in.readString();
+        this.longitude = in.readDouble();
+        this.lattitude = in.readDouble();
+        this.profile_picture = in.readString();
+        this.passHash = in.readString();
+        this.isLeader = in.readByte() != 0;
+        this.proposals = in.createStringArrayList();
     }
 
     @DynamoDBHashKey(attributeName = "personId")
@@ -97,6 +121,15 @@ public class Person {
         this.lattitude = lattitude;
     }
 
+
+    //public String getIdOfConfirmingLeader() {
+    //    return idOfConfirmingLeader;
+    //}
+
+    //public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
+    //  this.idOfConfirmingLeader = idOfConfirmingLeader;
+    //}
+
     @DynamoDBAttribute
     public double getLongitude() {
         return longitude;
@@ -106,20 +139,28 @@ public class Person {
         this.longitude = longitude;
     }
 
-
-    //public String getIdOfConfirmingLeader() {
-    //    return idOfConfirmingLeader;
-    //}
-
-    //public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
-      //  this.idOfConfirmingLeader = idOfConfirmingLeader;
-    //}
-
     public ArrayList<String> getProposals() {
         return proposals;
     }
 
     public void setProposals(ArrayList<String> proposals) {
         this.proposals = proposals;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.personId);
+        dest.writeDouble(this.longitude);
+        dest.writeDouble(this.lattitude);
+        dest.writeString(this.profile_picture);
+        dest.writeString(this.passHash);
+        dest.writeByte(this.isLeader ? (byte) 1 : (byte) 0);
+        dest.writeStringList(this.proposals);
     }
 }
