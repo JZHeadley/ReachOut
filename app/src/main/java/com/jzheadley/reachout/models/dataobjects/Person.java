@@ -2,9 +2,6 @@ package com.jzheadley.reachout.models.dataobjects;
 
 import java.util.ArrayList;
 
-/**
- * Created by pjhud on 2/18/2017.
- */
 
 public class Person {
     protected String personId;
