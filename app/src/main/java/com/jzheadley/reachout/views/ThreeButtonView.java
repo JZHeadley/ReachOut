@@ -41,6 +41,10 @@ public class ThreeButtonView extends LinearLayout {
         initControl(context);
     }
 
+    public String getInputText() {
+        return threeButtonEditText.getText().toString();
+    }
+
     public void setPromptText(String promptText) {
         threeButtonPlayPrompt.setContentDescription(promptText);
     }

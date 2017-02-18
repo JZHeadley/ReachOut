@@ -7,9 +7,6 @@ import com.jzheadley.reachout.models.services.DynamoMapperClient;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/**
- * Created by pjhud on 2/18/2017.
- */
 public class ModelSingleton {
     private static ModelSingleton ourInstance = new ModelSingleton();
 
