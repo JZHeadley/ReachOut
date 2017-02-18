@@ -10,6 +10,7 @@ import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.models.services.DynamoMapperClient;
 import com.jzheadley.reachout.models.services.NessieService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -63,6 +64,14 @@ public class ModelSingleton {
 
     public HashMap<String, Proposal> getProposals() {
         return proposals;
+    }
+
+    public ArrayList<Proposal> listProposalsForPerson(Person person) {
+        ArrayList<Proposal> result = new ArrayList<>();
+        for (String proposalId : person.getProposals()) {
+            result.add(proposals.get(proposalId));
+        }
+        return result;
     }
 
     private class SynchWithDataBase extends AsyncTask<Void, Void, Void> {

@@ -11,33 +11,41 @@ import android.widget.ProgressBar;
 
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
+import com.jzheadley.reachout.models.ModelUtilities;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class BorrowerActivity extends BaseActivity {
     private static final String TAG = "BorrowerActivity";
     public ProgressBar riskBar;
     public int riskStatus = 0;
-    private Person person;
+
     private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrower);
-        HashMap<String, Proposal> proposals = ModelSingleton.getInstance().getProposals();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_proposals);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        // Person currentUser = (Person) this.getApplicationContext().getSharedPreferences("currentUser",MODE_PRIVATE);
+        //ArrayList<Proposal> proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
+        //TODO: replace this with the above code once currentUser is implemented
+        ArrayList<Proposal> proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
+        int creditScore = ModelUtilities.creditScore(proposals);
 
-        adapter = new MyProposalsAdapter(new ArrayList<Proposal>(proposals.values()));
+        adapter = new MyProposalsAdapter(proposals);
         recyclerView.setAdapter(adapter);
         Log.d(TAG, "onCreate: " + proposals);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_proposal);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +58,6 @@ public class BorrowerActivity extends BaseActivity {
 
 
 
-//        int creditScore = ModelUtilities.creditScore(proposals);
 //        riskBar = (ProgressBar)  findViewById(R.id.riskBar);
 //        riskBar.setMax(1000000);
 //        riskBar.setProgress(creditScore);
