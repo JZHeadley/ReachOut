@@ -54,7 +54,12 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent cashIntent = null;
+                    Intent proposalIntent = null;
+
+                    proposalIntent = new Intent(v.getContext(),ViewProposalActivity.class);
+                    proposalIntent.putExtra("singleProposal",proposal);
+                    holder.itemView.getContext().startActivity(proposalIntent);
+                    /*
                     if (proposal.getState() == 3) {
                         cashIntent = new Intent(v.getContext(), CashActivity.class);
                     } else if (proposal.getState() == 4) {
@@ -67,6 +72,7 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
 
                     cashIntent.putExtra("proposal", proposal);
                     v.getContext().startActivity(cashIntent);
+                    */
                 }
             });
         }

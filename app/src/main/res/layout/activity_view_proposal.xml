@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_view_proposal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jzheadley.reachout.ui.ViewProposalActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proposal Information"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textSize="30sp"
+        android:textAlignment="center" />
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_loan_amount"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="" />
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_repayment_amount"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""/>
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_loan_length"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""/>
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_money_making"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""/>
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_loan_purchase"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""/>
+
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_how_money_help"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""/>
+
+</LinearLayout>

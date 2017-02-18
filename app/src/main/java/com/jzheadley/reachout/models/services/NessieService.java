@@ -10,6 +10,7 @@ import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.reimaginebanking.api.nessieandroidsdk.NessieError;
 import com.reimaginebanking.api.nessieandroidsdk.NessieResultsListener;
+import com.reimaginebanking.api.nessieandroidsdk.constants.AccountType;
 import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionMedium;
 import com.reimaginebanking.api.nessieandroidsdk.constants.TransactionType;
 import com.reimaginebanking.api.nessieandroidsdk.models.Account;
@@ -28,8 +29,27 @@ public class NessieService {
     private String date = DateFormat.getDateTimeInstance().format(new Date());
     private String accountNumber;
 
-    public void createAccount(Proposal proposal){
-        proposal.submitted_online(accountNumber);
+    public void createAccount(final Proposal proposal){
+        Account account = new Account.Builder()
+                .balance(0)
+                .nickname(proposal.getPersonId())
+                .type(AccountType.CHECKING)
+                .rewards(0)
+                .accountNumber(getAccountId())
+                .build();
+
+        client.ACCOUNT.createAccount(Integer.toString(R.string.customer_id), account, new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                PostResponse<Account> response = (PostResponse<Account>) result;
+                Account newAccount = response.getObjectCreated();
+                proposal.submitted_online(newAccount.getAccountNumber());
+            }
+            @Override
+            public void onFailure(NessieError error){
+                Log.d(TAG, "onFailure: "+error);
+            }
+        });
     }
 
     public void checkFunds() { //check for funding
@@ -71,12 +91,24 @@ public class NessieService {
 
     public void cashWithdrawl(Proposal proposal, int bankAccountNumber)
     {
-        Transfer transfer;
-        if(proposal.getState() == 3)
-        {
-            transfer = new Transfer(getTransferId(), date, "Completed", TransactionType.P2P, TransactionMedium.BALANCE, proposal.getAccountNumber(), Integer.toString(bankAccountNumber), proposal.getAmountBorrowed(), "Proposal to bank");
-            proposal.cashWithdrawn();
-        }
+        Transfer transfer = new Transfer.Builder()
+                .medium(TransactionMedium.BALANCE)
+                .payeeId(Integer.toString(bankAccountNumber))
+                .transactionDate(date)
+                .amount(proposal.getAmountBorrowed())
+                .description("Money from proposal account to bank for withdrawl")
+                .build();
+
+        client.TRANSFER.createTransfer(proposal.getAccountNumber(), transfer, new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                PostResponse<Transfer> response = (PostResponse<Transfer>) result;
+            }
+            @Override
+            public void onFailure(NessieError error){
+                Log.d(TAG, "onFailure: "+error);
+            }
+        });
     }
 
     public void repay(final Proposal proposal)
@@ -125,6 +157,16 @@ public class NessieService {
         p3 = random.nextInt(899999)+100000;
         transferId = Integer.toString(p1)+Integer.toString(p2)+Integer.toString(p3);
         return transferId;
+    }
+
+    private String getAccountId(){
+        String accountId;
+        int p1,p2;
+        Random random = new Random();
+        p1 = random.nextInt(899999999)+100000000;
+        p2 = random.nextInt(8999999)+1000000;
+        accountId = Integer.toString(p1)+Integer.toString(p2);
+        return accountId;
     }
 
     private NessieService() {
