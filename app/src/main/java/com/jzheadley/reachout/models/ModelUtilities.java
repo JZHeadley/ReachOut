@@ -2,6 +2,7 @@ package com.jzheadley.reachout.models;
 
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Set;
 
 public class ModelUtilities {
 
-    public static int creditScore(Set<Proposal> proposals) {
+    public static int creditScore(Collection<Proposal> proposals) {
         int creditScore = 0;
         for (Proposal prop : proposals) {
             switch (prop.getState()) {

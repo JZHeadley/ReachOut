@@ -15,7 +15,7 @@ public class Person {
     private String profile_picture = " ";
     private String passHash = " ";
     private boolean isLeader = false;
-    private String idOfConfirmingLeader = " ";
+   // private String idOfConfirmingLeader = " ";
     private ArrayList<String> proposals;
 
 
@@ -25,7 +25,7 @@ public class Person {
     }
 
     public Person(String personId, boolean isLeader, String name, double longitude, double lattitude,
-                  String passHash, String idOfConfirmingLeader) {
+                  String passHash) {
         this.personId = personId;
         this.isLeader = isLeader;
         this.name = name;
@@ -34,7 +34,7 @@ public class Person {
         this.lattitude = lattitude;
         this.profile_picture = " ";
 
-        this.idOfConfirmingLeader = idOfConfirmingLeader;
+        //this.idOfConfirmingLeader = idOfConfirmingLeader;
         this.proposals = new ArrayList<>();
 
     }
@@ -107,13 +107,13 @@ public class Person {
     }
 
 
-    public String getIdOfConfirmingLeader() {
-        return idOfConfirmingLeader;
-    }
+    //public String getIdOfConfirmingLeader() {
+    //    return idOfConfirmingLeader;
+    //}
 
-    public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
-        this.idOfConfirmingLeader = idOfConfirmingLeader;
-    }
+    //public void setIdOfConfirmingLeader(String idOfConfirmingLeader) {
+      //  this.idOfConfirmingLeader = idOfConfirmingLeader;
+    //}
 
     public ArrayList<String> getProposals() {
         return proposals;
