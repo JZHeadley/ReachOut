@@ -1,5 +1,6 @@
 package com.jzheadley.reachout.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -31,24 +32,16 @@ import java.util.Random;
 
 
 public class RegisterActivity extends BaseActivity implements UploadTaskCallback {
-    private static final int PICK_IMAGE_REQUEST = 2;
+    private static final int PICK_IMAGE_REQUEST = 1;
     private static final String TAG = "RegisterActivity";
     private Person person;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
         person = new Person();
-        final MaterialLockView materialLockView = (MaterialLockView) findViewById(R.id.pattern);
-        materialLockView.setOnPatternListener(new MaterialLockView.OnPatternListener() {
-            @Override
-            public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
-                materialLockView.setDisplayMode(MaterialLockView.DisplayMode.Correct);
-                String encodedString = Base64.encodeToString(pattern.toString().getBytes(), Base64.DEFAULT);
-                person.setPassHash(encodedString);
-                Log.d(TAG, "onPatternDetected: " + encodedString);
-            }
-        });
+
     }
 
 
@@ -66,8 +59,11 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
                     UploadHelper helper = new UploadHelper(this, this);
                     helper.setClientId(Constants.IMGUR_CLIENT_ID);
                     helper.setSecretId(Constants.IMGUR_SECRET);
+
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                    ImageView imageView = (ImageView) findViewById(R.id.add_photo);
+                    Log.d(TAG, "onActivityResult: " + bitmap);
+
+                    ImageView imageView = (ImageView) findViewById(R.id.add_photo_register);
                     imageView.setImageBitmap(bitmap);
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes);
@@ -81,6 +77,8 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
                         e.printStackTrace();
                     }
                     helper.uploadData(Uri.fromFile(destination));
+                } else {
+                    Log.e(TAG, "onActivityResult: WTF");
                 }
                 break;
         }
@@ -110,6 +108,23 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
         person.setLongitude((new Random()).nextDouble() * 100 - 50);
         person.setLeader((new Random().nextBoolean()));
         ModelSingleton.getInstance().createPerson(person);
+        ModelSingleton.getInstance().synchWithDB();
         finish();
+    }
+
+    public void onPatternClick(View view) {
+        final Dialog dialog = new Dialog(view.getContext());
+        dialog.setContentView(R.layout.pattern_lock_view);
+        final MaterialLockView materialLockView = (MaterialLockView) dialog.findViewById(R.id.pattern);
+        materialLockView.setOnPatternListener(new MaterialLockView.OnPatternListener() {
+
+            @Override
+            public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
+                materialLockView.setDisplayMode(MaterialLockView.DisplayMode.Correct);
+                person.setPassHash(Base64.encodeToString(pattern.toString().getBytes(), Base64.DEFAULT));
+
+            }
+        });
+        dialog.show();
     }
 }

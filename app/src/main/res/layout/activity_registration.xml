@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <EditText
-            android:hint="name"
-            android:id="@+id/name_input"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:maxLines="1"
-            android:textColor="@android:color/black" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/add_photo_register"
-        android:layout_height="250dp"
+    <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:onClick="onImageClick"
-        android:src="@drawable/image_placeholder" />
+        android:orientation="vertical">
 
-    <com.amnix.materiallockview.MaterialLockView xmlns:lockview="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/pattern"
-        android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        lockview:CORRECT_COLOR="#00ff00"
-        lockview:LOCK_COLOR="#000"
-        lockview:WRONG_COLOR="#ff0000" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
 
-    <Button
-        android:id="@+id/submit_registration"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:onClick="onClick"
-        android:text="Submit" />
+            <EditText
+                android:hint="Name"
+                android:id="@+id/name_input"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:textColor="@android:color/black" />
+        </android.support.design.widget.TextInputLayout>
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/add_photo_register"
+            android:layout_height="250dp"
+            android:layout_width="fill_parent"
+            android:onClick="onImageClick"
+            android:src="@drawable/image_placeholder" />
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="onPatternClick"
+            android:text="@string/create_pattern_password" />
+
+        <Button
+            android:id="@+id/submit_registration"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="onClick"
+            android:text="Submit" />
+    </LinearLayout>
+</ScrollView>
