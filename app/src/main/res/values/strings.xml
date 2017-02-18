@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">ReachOut</string>
     <string name="nessie_api_key">8c2d2166ed1f4d33a2c3683c8cae9e5b</string>
+    <string name="prompt_loan_amount">How much money do you need?</string>
+    <string name="prompt_loan_repayment_amount">How much money will you pay back?</string>
+    <string name="prompt_loan_repayment_date">When will you pay this back?</string>
+    <string name="prompt_money_making">How do you make money?</string>
+    <string name="prompt_loan_purchase">What will you purchase with your loan</string>
+    <string name="prompt_loan_how_help">How will this loan help you make money?</string>
 </resources>
