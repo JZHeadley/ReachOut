@@ -1,7 +1,6 @@
 package com.jzheadley.reachout.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -11,7 +10,7 @@ import com.jzheadley.reachout.models.dataobjects.Person;
 
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
 
     @Override
