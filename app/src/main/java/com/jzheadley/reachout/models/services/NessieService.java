@@ -95,13 +95,13 @@ public class NessieService {
                         @Override
                         public void onSuccess(Object result) {
                             PostResponse<Transfer> response = (PostResponse<Transfer>) result;
+                            proposal.cashRepaid();
                         }
                         @Override
                         public void onFailure(NessieError error){
                             Log.d(TAG, "onFailure: "+error);
                         }
                     });
-                    proposal.cashRepaid();
                 }
             }
             @Override
