@@ -34,16 +34,22 @@ public class ViewProposalActivity extends AppCompatActivity {
 
         loanAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanAmount.setAddResponseVisibility(View.INVISIBLE);
+        loanAmount.setEditTextVisibility(View.INVISIBLE);
         loanRepayAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanRepayAmount.setAddResponseVisibility(View.INVISIBLE);
+        loanRepayAmount.setEditTextVisibility(View.INVISIBLE);
         loanLength.setPlayResponseVisibility(View.INVISIBLE);
         loanLength.setAddResponseVisibility(View.INVISIBLE);
+        loanLength.setEditTextVisibility(View.INVISIBLE);
         moneyMaking.setPlayResponseVisibility(View.INVISIBLE);
         moneyMaking.setAddResponseVisibility(View.INVISIBLE);
+        moneyMaking.setEditTextVisibility(View.INVISIBLE);
         loanPurchase.setPlayResponseVisibility(View.INVISIBLE);
         loanPurchase.setAddResponseVisibility(View.INVISIBLE);
+        loanPurchase.setEditTextVisibility(View.INVISIBLE);
         reason.setPlayResponseVisibility(View.INVISIBLE);
-        reason.setPlayResponseVisibility(View.INVISIBLE);
+        reason.setAddResponseVisibility(View.INVISIBLE);
+        reason.setEditTextVisibility(View.INVISIBLE);
 
         loanAmount.setPromptText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
         loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));

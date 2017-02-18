@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.github.zagum.speechrecognitionview.RecognitionProgressView;
@@ -23,6 +24,7 @@ import com.jzheadley.reachout.R;
 public class ThreeButtonView extends LinearLayout {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION_CODE = 1;
     private static final String TAG = "ThreeButtonView";
+    private ImageView threeButtonImage;
     private EditText threeButtonEditText;
     private Button threeButtonPlayPrompt;
     private Button threeButtonAddResponse;
@@ -60,6 +62,9 @@ public class ThreeButtonView extends LinearLayout {
     public void setAddResponseVisibility(int visibility) {
         threeButtonAddResponse.setVisibility(visibility);
     }
+    public void setPictureVisibility(int visibility) {
+        threeButtonImage.setVisibility(visibility);
+    }
 
     public void setPlayResponseVisibility(int visibility) {
         threeButtonPlayResponse.setVisibility(visibility);
@@ -84,6 +89,7 @@ public class ThreeButtonView extends LinearLayout {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context);
 
         inflater.inflate(R.layout.three_button_view, this, true);
+        threeButtonImage = (ImageView) findViewById(R.id.view_three_button_image);
         threeButtonEditText = (EditText) findViewById(R.id.view_three_button_edit_text);
         threeButtonPlayPrompt = (Button) findViewById(R.id.view_three_button_play_prompt);
         threeButtonAddResponse = (Button) findViewById(R.id.view_three_button_add_response);
