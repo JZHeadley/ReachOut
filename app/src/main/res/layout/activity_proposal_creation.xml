@@ -10,14 +10,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jzheadley.reachout.ui.ProposalCreationActivity"
-    app:layout_scrollFlags="scroll"
-    android:nestedScrollingEnabled="true"
-    android:scrollIndicators="left"
-    android:scrollbars="vertical"
-    android:verticalScrollbarPosition="left">
+    tools:context="com.jzheadley.reachout.ui.ProposalCreationActivity">
 
-
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/add_photo"
         android:layout_height="250dp"
@@ -61,5 +58,5 @@
         android:layout_width="match_parent"
         android:onClick="onClick"
         android:text="Submit" />
-
+</android.support.v4.widget.NestedScrollView>
 </LinearLayout>
