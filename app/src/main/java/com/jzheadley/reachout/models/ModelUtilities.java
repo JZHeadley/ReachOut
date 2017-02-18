@@ -1,5 +1,6 @@
 package com.jzheadley.reachout.models;
 
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.List;

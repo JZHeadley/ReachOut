@@ -3,12 +3,15 @@ package com.jzheadley.reachout.models;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.models.services.DynamoMapperClient;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class ModelSingleton {
     private static final String TAG = "ModelSingleton";
@@ -63,12 +66,27 @@ public class ModelSingleton {
 
         @Override
         protected Void doInBackground(Void... params) {
-            for (Proposal prop : newProposals) {
-                Log.d(TAG, "doInBackground: " + prop.toString());
-                DynamoMapperClient.getMapper().save(prop);
-            }
             for (Person pers : newPeople) {
                 DynamoMapperClient.getMapper().save(pers);
+            }
+            newPeople.clear();
+            DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+            PaginatedScanList<Person> result = DynamoMapperClient.getMapper().scan(Person.class, scanExpression);
+            result.size();
+            for (Person pers : result) {
+                addPerson(pers);
+            }
+
+
+            for (Proposal prop : newProposals) {
+                DynamoMapperClient.getMapper().save(prop);
+            }
+            newProposals.clear();
+            DynamoDBScanExpression propScanExpression = new DynamoDBScanExpression();
+            PaginatedScanList<Proposal> propResult = DynamoMapperClient.getMapper().scan(Proposal.class, propScanExpression);
+            propResult.size();
+            for (Proposal prop : propResult) {
+                addProposal(prop);
             }
             return null;
         }
