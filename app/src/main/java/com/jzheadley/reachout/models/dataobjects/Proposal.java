@@ -16,6 +16,7 @@ public class Proposal {
     public static final int STATE_CASH_REPAID = 5;
 
     private String proposalId;
+    private String personId;
     private int state = STATE_INCOMPLETE;
 
     private int amountBorrowed = -1;
@@ -77,6 +78,14 @@ public class Proposal {
 
     public void setProposalId(String proposalId) {
         this.proposalId = proposalId;
+    }
+
+    public String getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
     public int getState() {
