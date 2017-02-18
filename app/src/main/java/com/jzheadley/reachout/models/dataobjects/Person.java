@@ -7,17 +7,17 @@ import android.location.Location;
  */
 
 public class Person {
-    protected int personId;
+    protected String personId;
     protected String name;
     protected Location location;
     protected Picture profile_picture;
     protected int passHash;
 
-    public int getPersonId() {
+    public String getPersonId() {
         return personId;
     }
 
-    public void setPerson_id(int personId) {
+    public void setPerson_id(String personId) {
         this.personId = personId;
     }
 
@@ -51,5 +51,13 @@ public class Person {
 
     public void setPassHash(int passHash) {
         this.passHash = passHash;
+    }
+
+    public boolean isLeader() {
+        return (this instanceof Leader);
+    }
+
+    public boolean isBorrower() {
+        return (this instanceof Borrower);
     }
 }

@@ -1,7 +1,5 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import com.jzheadley.reachout.models.dataobjects.Picture;
-
 import java.util.ArrayList;
 
 /**

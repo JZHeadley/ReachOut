@@ -11,10 +11,10 @@ import java.util.ArrayList;
 public class Leader extends Person {
     private int idOfConfirmingNGO;
     private ArrayList<Integer> borrowerIds;
-    private ArrayList<Proposal>  endorsedProposals;
+    private ArrayList<Proposal> endorsedProposals;
 
-    public Leader(int personId, String name, Location location,
-                    int passHash, int idOfConfirmingNGO) {
+    public Leader(String personId, String name, Location location,
+                  int passHash, int idOfConfirmingNGO) {
         this.personId = personId;
         this.name = name;
         this.passHash = passHash;

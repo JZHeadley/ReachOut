@@ -1,7 +1,5 @@
 package com.jzheadley.reachout.models.dataobjects;
 
-import com.jzheadley.reachout.models.dataobjects.Pitch;
-
 import java.sql.Date;
 
 /**
@@ -21,7 +19,7 @@ public class Proposal {
 
     private int amountBorrowed = -1;
 
-    private int amountToBeRepayed = -1 ;
+    private int amountToBeRepayed = -1;
     private int monthsOfLoan = -1;
 
     private int routingNumber = -1;
@@ -67,7 +65,6 @@ public class Proposal {
         state = STATE_CASH_REPAID;
         this.dateRepaid = new Date(System.currentTimeMillis());
     }
-
 
 
     /* Getters / Setters */
