@@ -20,6 +20,7 @@ public class ModelSingleton {
     private HashSet<Proposal> newProposals = new HashSet<>();
 
     private ModelSingleton() {
+        synchWithDB();
     }
 
     public static ModelSingleton getInstance() {

@@ -17,9 +17,9 @@ public class MainActivity extends BaseActivity {
 
 
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.test1:
-                startActivity(new Intent(this,BorrowerActivity.class));
+                startActivity(new Intent(this, BorrowerActivity.class));
         }
     }
 }

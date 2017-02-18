@@ -19,7 +19,7 @@ public class Proposal {
     public String purchaseDescription = " ";
     public String planDescription = " ";
     public Set<String> pictures = new HashSet<>();
-    public Set<String> endorsingLeaders = new HashSet<>();
+    private Set<String> endorsingLeaders = new HashSet<>();
     private String proposalId = " ";
     private String personId = " ";
     private int state = STATE_INCOMPLETE;
@@ -30,15 +30,20 @@ public class Proposal {
     private Long dateFunded = 0L;
     private String lenderAccountNumber = " ";
     private Long dateRepaid = 0L; //Actual, not due date
-
     public Proposal(String proposalId) {
         this.proposalId = proposalId;
     }
-
-
     public Proposal() {
         pictures.add(" ");
         endorsingLeaders.add(" ");
+    }
+
+    public void setEndorsingLeaders(Set<String> endorsingLeaders) {
+        this.endorsingLeaders = endorsingLeaders;
+    }
+
+    public void setPictures(Set<String> pictures) {
+        this.pictures = pictures;
     }
 
     @Override

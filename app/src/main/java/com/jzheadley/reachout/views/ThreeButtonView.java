@@ -53,6 +53,10 @@ public class ThreeButtonView extends LinearLayout {
         speechRecognizer.destroy();
     }
 
+    public void setEditTextVisibility(int visibility) {
+        threeButtonEditText.setVisibility(visibility);
+    }
+
     public void setPromptText(String promptText) {
         threeButtonPlayPrompt.setContentDescription(promptText);
     }

@@ -113,7 +113,7 @@ public class ProposalCreationActivity extends AppCompatActivity implements Uploa
     }
 
     public void onClick(View view) {
-        proposal.setProposalId(String.valueOf((new Random()).nextInt()));
+        proposal.setProposalId(String.valueOf((new Random()).nextInt(Integer.MAX_VALUE)));
         proposal.setAmountBorrowed(Integer.parseInt(loanAmount.getInputText()));
         proposal.setAmountToBeRepayed(Integer.parseInt(loanRepayAmount.getInputText()));
         proposal.setMonthsOfLoan(Integer.parseInt(loanLength.getInputText()));
