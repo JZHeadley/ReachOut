@@ -40,7 +40,7 @@ public class Constants {
         Person mike = new Person("id2", true, "Mullah Mike", 12.3425, 13.533535, "264643647");
         people.add(mike);
 
-        mike.setProfile_picture("http://bit.ly/mikesspic");
+        mike.setProfile_picture("http://imgur.com/oazRdv1");
 
         mike.getProposals().add(joeIrrigation.getProposalId());
         joeIrrigation.getEndorsingLeaders().add(mike.getPersonId());

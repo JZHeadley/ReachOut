@@ -14,4 +14,16 @@
         android:id="@+id/list_person_faces"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
+
+    <Button
+        android:background="@null"
+        android:id="@+id/btn_signup"
+        android:layout_below="@+id/list_person_faces"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:layout_width="fill_parent"
+        android:onClick="onClick"
+        android:text="@string/not_already_a_member_register_here"
+        android:textAllCaps="false"
+        android:textSize="15sp" />
 </RelativeLayout>
