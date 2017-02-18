@@ -14,11 +14,9 @@
 
     <ImageView
         android:id="@+id/add_photo"
-        android:layout_alignParentTop="true"
-        android:layout_height="180dp"
+        android:layout_height="250dp"
         android:layout_width="match_parent"
         android:onClick="onImageClick"
-        android:scaleType="centerCrop"
         android:src="@drawable/image_placeholder" />
 
     <com.jzheadley.reachout.views.ThreeButtonView
@@ -32,7 +30,7 @@
         android:layout_width="wrap_content" />
 
     <com.jzheadley.reachout.views.ThreeButtonView
-        android:id="@+id/three_button_repayment_date"
+        android:id="@+id/three_button_loan_length"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
 
@@ -50,5 +48,12 @@
         android:id="@+id/three_button_how_money_help"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_proposal_submit"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="onClick"
+        android:text="Submit" />
 
 </LinearLayout>

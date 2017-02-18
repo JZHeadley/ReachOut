@@ -6,7 +6,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
 import java.util.ArrayList;
 
-@DynamoDBTable(tableName = "Person")
+@DynamoDBTable(tableName = "ReachOutPersons")
 public class Person {
     protected String personId;
     protected String name;
