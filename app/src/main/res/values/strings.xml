@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ReachOut</string>
     <string name="nessie_api_key">8c2d2166ed1f4d33a2c3683c8cae9e5b</string>
+    <string name="customer_id">58a7effd1756fc834d904a75</string>
 </resources>

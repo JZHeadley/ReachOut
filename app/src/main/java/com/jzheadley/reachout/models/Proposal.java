@@ -44,11 +44,12 @@ public class Proposal {
         return true;
     }
 
-    public void submitted_online(int routingNumber, int accountNumber) {
+    public void submitted_online(int accountNumber) {
         state = STATE_SUBMITTED_ONLINE;
     }
 
-    public void funded(int lenderRoutingNumber, int lenderAccountNumber) {
+    public void funded(int lenderAccountNumber) {
+        setLenderAccountNumber(lenderAccountNumber);
         state = STATE_FUNDED;
     }
 
