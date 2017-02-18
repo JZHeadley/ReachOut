@@ -1,9 +1,8 @@
 package com.jzheadley.reachout.models;
 
-import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by pjhud on 2/18/2017.
@@ -11,7 +10,7 @@ import java.util.List;
 
 public class ModelUtilities {
 
-    public static int creditScore(List<Proposal> proposals) {
+    public static int creditScore(Set<Proposal> proposals) {
         int creditScore = 0;
         for (Proposal prop : proposals) {
             switch (prop.getState()) {
