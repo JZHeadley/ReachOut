@@ -14,6 +14,7 @@ public class BorrowerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrower);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_restaurant);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

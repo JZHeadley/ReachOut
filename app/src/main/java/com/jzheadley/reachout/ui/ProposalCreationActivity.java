@@ -24,9 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class ProposalCreationActivity extends AppCompatActivity implements UploadTaskCallback {
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -63,9 +61,7 @@ public class ProposalCreationActivity extends AppCompatActivity implements Uploa
     public void success(String url) {
         Log.d(TAG, "success: Things worked! Heres the url to the image you just uploaded " + url);
         // TODO: 2/18/2017 set the url for the proposal
-        Set<String> set = proposal.getPictures();
-        set.add(url);
-        proposal.setPictures((HashSet<String>) set);
+        proposal.getPictures().add(url);
     }
 
     @Override
@@ -83,11 +79,6 @@ public class ProposalCreationActivity extends AppCompatActivity implements Uploa
     }
 
     public void onImageClick(View view) {
-        /*Intent imageGalleryChooserIntent = new Intent();
-        imageGalleryChooserIntent.setType("image*//*");
-        imageGalleryChooserIntent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(imageGalleryChooserIntent, "Select Picture"),
-            PICK_IMAGE_REQUEST);*/
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
@@ -129,9 +120,11 @@ public class ProposalCreationActivity extends AppCompatActivity implements Uploa
         proposal.setBusinessDescription(moneyMaking.getInputText());
         proposal.setPurchaseDescription(loanPurchase.getInputText());
         proposal.setPlanDescription(reason.getInputText());
+        proposal.setPersonId("JoeFarmer");
+
         ModelSingleton.getInstance().createProposal(proposal);
         ModelSingleton.getInstance().synchWithDB();
-        // finish();
+        finish();
     }
 }
 

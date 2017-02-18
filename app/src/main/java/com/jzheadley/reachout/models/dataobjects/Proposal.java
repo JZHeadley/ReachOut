@@ -15,29 +15,51 @@ public class Proposal {
     public static final int STATE_FUNDED = 3;
     public static final int STATE_CASH_WITHDRAWN = 4;
     public static final int STATE_CASH_REPAID = 5;
-    public String businessDescription = null;
-    public String purchaseDescription = null;
-    public String planDescription = null;
+    public String businessDescription = " ";
+    public String purchaseDescription = " ";
+    public String planDescription = " ";
     public Set<String> pictures = new HashSet<>();
     public Set<String> endorsingLeaders = new HashSet<>();
-    private String proposalId;
-    private String personId;
+    private String proposalId = " ";
+    private String personId = " ";
     private int state = STATE_INCOMPLETE;
     private int amountBorrowed = -1;
     private int amountToBeRepayed = -1;
     private int monthsOfLoan = -1;
-    private String accountNumber = null;
-    private Long dateFunded;
-    private String lenderAccountNumber = null;
-    private Long dateRepaid; //Actual, not due date
-
+    private String accountNumber = " ";
+    private Long dateFunded = 0L;
+    private String lenderAccountNumber = " ";
+    private Long dateRepaid = 0L; //Actual, not due date
 
     public Proposal(String proposalId) {
         this.proposalId = proposalId;
     }
 
-    public Proposal() {
 
+    public Proposal() {
+        pictures.add(" ");
+        endorsingLeaders.add(" ");
+    }
+
+    @Override
+    public String toString() {
+        return "Proposal{" +
+            "businessDescription='" + businessDescription + '\'' +
+            ", purchaseDescription='" + purchaseDescription + '\'' +
+            ", planDescription='" + planDescription + '\'' +
+            ", pictures=" + pictures +
+            ", endorsingLeaders=" + endorsingLeaders +
+            ", proposalId='" + proposalId + '\'' +
+            ", personId='" + personId + '\'' +
+            ", state=" + state +
+            ", amountBorrowed=" + amountBorrowed +
+            ", amountToBeRepayed=" + amountToBeRepayed +
+            ", monthsOfLoan=" + monthsOfLoan +
+            ", accountNumber='" + accountNumber + '\'' +
+            ", dateFunded=" + dateFunded +
+            ", lenderAccountNumber='" + lenderAccountNumber + '\'' +
+            ", dateRepaid=" + dateRepaid +
+            '}';
     }
 
     /* State changes */

@@ -1,5 +1,8 @@
 package com.jzheadley.reachout.models;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.models.services.DynamoMapperClient;
@@ -8,11 +11,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class ModelSingleton {
+    private static final String TAG = "ModelSingleton";
     private static ModelSingleton ourInstance = new ModelSingleton();
-
     private HashMap<String, Person> people = new HashMap<>();
     private HashMap<String, Proposal> proposals = new HashMap<>();
-
     private HashSet<Person> newPeople = new HashSet<>();
     private HashSet<Proposal> newProposals = new HashSet<>();
 
@@ -27,6 +29,7 @@ public class ModelSingleton {
     public void addPerson(Person person) {
         people.put(person.getPersonId(), person);
     }
+
     public void addProposal(Proposal proposal) {
         proposals.put(proposal.getProposalId(), proposal);
     }
@@ -36,21 +39,17 @@ public class ModelSingleton {
         newPeople.add(person);
         addPerson(person);
     }
+
     public void createProposal(Proposal proposal) {
         newProposals.add(proposal);
         addProposal(proposal);
     }
 
-    public void synchWithDB() {
-        for (Person pers : newPeople) {
-            DynamoMapperClient.getMapper().save(pers);
-        }
-        for (Proposal prop : newProposals) {
-            DynamoMapperClient.getMapper().save(prop);
-        }
-    }
-
     /* Getters/Setters */
+
+    public void synchWithDB() {
+        (new SynchWithDataBase()).execute();
+    }
 
     public HashMap<String, Person> getPeople() {
         return people;
@@ -60,4 +59,18 @@ public class ModelSingleton {
         return proposals;
     }
 
+    private class SynchWithDataBase extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            for (Proposal prop : newProposals) {
+                Log.d(TAG, "doInBackground: " + prop.toString());
+                DynamoMapperClient.getMapper().save(prop);
+            }
+            for (Person pers : newPeople) {
+                DynamoMapperClient.getMapper().save(pers);
+            }
+            return null;
+        }
+    }
 }

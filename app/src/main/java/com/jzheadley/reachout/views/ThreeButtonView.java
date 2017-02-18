@@ -45,6 +45,14 @@ public class ThreeButtonView extends LinearLayout {
         return threeButtonEditText.getText().toString();
     }
 
+    @Override
+    public void onViewRemoved(View child) {
+        super.onViewRemoved(child);
+        ttobj.stop();
+        ttobj.shutdown();
+        speechRecognizer.destroy();
+    }
+
     public void setPromptText(String promptText) {
         threeButtonPlayPrompt.setContentDescription(promptText);
     }
