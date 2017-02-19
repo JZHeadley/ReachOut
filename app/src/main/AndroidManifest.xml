@@ -30,6 +30,8 @@
         <activity
             android:label="@string/title_activity_borrower"
             android:name=".ui.BorrowerActivity" />
+        <activity android:label="InvestorActivity"
+            android:name=".ui.InvestorActivity" />
         <activity
             android:name=".ui.CashActivity"
             android:parentActivityName=".ui.BorrowerActivity" />

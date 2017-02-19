@@ -1,6 +1,5 @@
 package com.jzheadley.reachout.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -71,6 +70,8 @@ public class ViewProposalActivity extends BaseActivity {
 
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         reason.setEditTextText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
+
+
 
         ModelSingleton.getInstance().synchWithDB();
     }
