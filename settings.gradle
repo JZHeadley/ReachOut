@@ -1,1 +1,2 @@
 include ':app', ':ImgurConnectionLibrary', ':materiallockview'
+include ':app',':materiallockview'

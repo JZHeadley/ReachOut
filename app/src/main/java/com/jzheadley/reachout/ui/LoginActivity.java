@@ -14,8 +14,6 @@ import com.jzheadley.reachout.models.dataobjects.Person;
 import java.util.ArrayList;
 
 public class LoginActivity extends BaseActivity {
-
-
     private static final String TAG = "LoginActivity";
     private ArrayList<Person> people;
 

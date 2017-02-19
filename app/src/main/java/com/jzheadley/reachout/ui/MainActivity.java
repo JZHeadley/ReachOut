@@ -15,9 +15,11 @@ public class MainActivity extends BaseActivity {
         ModelSingleton.getInstance().synchWithDB();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(ModelUtilities.getCurrentUser() == null)
-        {
-            startActivity(new Intent(this, LoginActivity.class));
+        while(true) {
+            if (ModelUtilities.getCurrentUser() == null)
+                startActivity(new Intent(this, LoginActivity.class));
+            else
+                break;
         }
     }
 
