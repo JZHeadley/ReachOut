@@ -6,33 +6,46 @@
 
     <ImageView
         android:id="@+id/view_three_button_image"
-        android:layout_height="50dp"
-        android:layout_width="50dp"
+        android:layout_height="@dimen/button_size"
+        android:layout_width="@dimen/button_size"
         android:src="@drawable/ic_elder" />
 
-    <EditText
-        android:id="@+id/view_three_button_edit_text"
-        android:inputType="text"
-        android:layout_height="50dp"
-        android:layout_width="175dp"
-        android:maxLines="5"
-        android:minLines="2" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
 
-    <Button
-        android:background="@drawable/ic_play_arrow"
-        android:id="@+id/view_three_button_play_prompt"
-        android:layout_height="50dp"
-        android:layout_width="50dp" />
+        <EditText
+            android:id="@+id/view_three_button_edit_text"
+            android:inputType="number|textCapSentences|textMultiLine"
+            android:layout_height="50dp"
+            android:layout_width="240dp"
+            android:maxLength="2000"
+            android:maxLines="5"
+            android:minLines="1" />
+    </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:background="@drawable/ic_mic"
-        android:id="@+id/view_three_button_add_response"
-        android:layout_height="50dp"
-        android:layout_width="50dp" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:background="@drawable/ic_volume_up"
-        android:id="@+id/view_three_button_play_response"
-        android:layout_height="50dp"
-        android:layout_width="50dp" />
+        <Button
+            android:background="@drawable/ic_play_arrow"
+            android:id="@+id/view_three_button_play_prompt"
+            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/button_size" />
+
+        <Button
+            android:background="@drawable/ic_mic"
+            android:id="@+id/view_three_button_add_response"
+            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/button_size" />
+
+        <Button
+            android:background="@drawable/ic_volume_up"
+            android:id="@+id/view_three_button_play_response"
+            android:layout_height="@dimen/button_size"
+            android:layout_width="@dimen/button_size" />
+    </LinearLayout>
 </LinearLayout>

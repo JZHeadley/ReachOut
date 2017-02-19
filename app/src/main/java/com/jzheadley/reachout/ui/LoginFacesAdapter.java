@@ -1,5 +1,6 @@
 package com.jzheadley.reachout.ui;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,19 @@ public class LoginFacesAdapter extends RecyclerView.Adapter<LoginFacesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Person person = people.get(position);
+        final Person person = people.get(position);
         holder.nameText.setText(person.getName());
         Glide.with(holder.itemView.getContext())
             .load(person.getProfile_picture() + ".png")
             .into(holder.imageView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PatternLoginActivity.class);
+                intent.putExtra("PossibleUser", person);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 
