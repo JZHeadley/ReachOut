@@ -1,16 +1,41 @@
 package com.jzheadley.reachout.models;
 
+import android.content.SharedPreferences;
+
+import com.jzheadley.reachout.App;
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by pjhud on 2/18/2017.
  */
 
 public class ModelUtilities {
+
+    public static Person getCurrentUser() {
+        SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE); //Check import version
+        String currentUserId = preferences.getString("personId",null);
+        return ModelSingleton.getInstance().getPeople().get(currentUserId);
+    }
+
+    public static void endorse(Person leader, Proposal prop) {
+        HashSet<String> endorsements = new HashSet<>(prop.getEndorsingLeaders());
+        endorsements.add(leader.getPersonId());
+        prop.setEndorsingLeaders(endorsements);
+        prop.setCreditScore(String.valueOf(creditScore(leader)));
+    }
+
+    public static int creditScore(Person person) {
+        return creditScore(ModelSingleton.getInstance().listProposalsForPerson(person));
+    }
+
 
     public static int creditScore(Collection<Proposal> proposals) {
         int rawScore = 0;

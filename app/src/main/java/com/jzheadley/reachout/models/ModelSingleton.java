@@ -96,7 +96,8 @@ public class ModelSingleton {
                 if (prop == null || prop.getState() >=2 ) {
                     Log.i(TAG, "doInBackground: ignoring proposal");
                 } else {
-                    NessieService.createAccount(prop);
+                    if(prop.getState() == Proposal.STATE_SUBMITTED_OFFLINE)
+                        NessieService.createAccount(prop);
                     DynamoMapperClient.getMapper().save(prop);
                 }
             }

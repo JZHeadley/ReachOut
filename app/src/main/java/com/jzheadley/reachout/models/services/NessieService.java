@@ -95,7 +95,7 @@ public class NessieService {
         }
     }
 
-    public static void cashWithdrawl(Proposal proposal, String bankAccountNumber)
+    public static void cashWithdrawl(final Proposal proposal, String bankAccountNumber)
     {
         Transfer transfer = new Transfer.Builder()
                 .medium(TransactionMedium.BALANCE)
@@ -110,13 +110,15 @@ public class NessieService {
             public void onSuccess(Object result) {
                 Log.d(TAG, "onSuccess: Money Transfered");
                 PostResponse<Transfer> response = (PostResponse<Transfer>) result;
+                proposal.cashWithdrawn();
+                Log.d(TAG, "onSuccess: withdrawn called "+proposal.getState());
             }
             @Override
             public void onFailure(NessieError error){
                 Log.d(TAG, "onFailure: "+error);
             }
         });
-
+        ModelSingleton.getInstance().synchWithDB();
     }
 
     public static void repay(final Proposal proposal)
@@ -156,15 +158,21 @@ public class NessieService {
         });
     }
 
-    private static String getTransferId(){
-        String transferId;
-        int p1,p2,p3;
-        Random random = new Random();
-        p1 = random.nextInt(899999999)+100000000;
-        p2 = random.nextInt(899999999)+100000000;
-        p3 = random.nextInt(899999)+100000;
-        transferId = Integer.toString(p1)+Integer.toString(p2)+Integer.toString(p3);
-        return transferId;
+    public static int getBalance(final Proposal proposal)
+    {
+        final int[] balance = new int[1];
+        client.ACCOUNT.getAccount(proposal.getAccountNumber(), new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                Account account = (Account) result;
+                balance[0] = account.getBalance();
+            }
+            @Override
+            public void onFailure(NessieError error){
+                Log.d(TAG, "onFailure: "+error);
+            }
+        });
+        return balance[0];
     }
 
     private static String getAccountId(){
@@ -176,9 +184,4 @@ public class NessieService {
         accountId = Integer.toString(p1)+Integer.toString(p2);
         return accountId;
     }
-
-    // private NessieService() {
-    //}
-
-
 }

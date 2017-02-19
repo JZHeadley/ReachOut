@@ -135,11 +135,12 @@ public class Proposal implements Parcelable {
     }
 
     public void cashWithdrawn() {
-        state = STATE_CASH_WITHDRAWN;
+        this.state = STATE_CASH_WITHDRAWN;
+        Log.d(TAG, "cashWithdrawn: called");
     }
 
     public void cashRepaid() {
-        state = STATE_CASH_REPAID;
+        this.state = STATE_CASH_REPAID;
         this.dateRepaid = System.currentTimeMillis();
     }
 

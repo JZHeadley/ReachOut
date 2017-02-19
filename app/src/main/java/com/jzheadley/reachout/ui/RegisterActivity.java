@@ -115,7 +115,7 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
         person.setLattitude((new Random()).nextDouble() * 100 - 50);
         person.setLongitude((new Random()).nextDouble() * 100 - 50);
         person.setPerson_id(Integer.toString(((new Random()).nextInt(Integer.MAX_VALUE))));
-        person.setLeader((new Random().nextBoolean()));
+        person.setLeader((new Random().nextBoolean()));  //TODO
         Intent intent = new Intent(view.getContext(), SetPatternPassword.class);
         intent.putExtra("almost_whole_person", person);
         view.getContext().startActivity(intent);
