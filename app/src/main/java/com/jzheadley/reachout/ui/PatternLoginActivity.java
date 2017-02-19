@@ -26,9 +26,9 @@ public class PatternLoginActivity extends BaseActivity {
             @Override
             public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
                 super.onPatternDetected(pattern, SimplePattern);
-                startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
                 SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
                 preferences.edit().putString("personId", person.getPersonId()).apply();
+                startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
                 /*  if (person.getPassHash().equals(Integer.toString(materialLockView.getPattern().hashCode()))) {
                     if (person.isLeader()) {
                         startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
