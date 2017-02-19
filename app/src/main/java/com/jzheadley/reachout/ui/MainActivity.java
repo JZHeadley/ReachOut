@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
+import com.jzheadley.reachout.models.ModelUtilities;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -14,19 +15,13 @@ public class MainActivity extends BaseActivity {
         ModelSingleton.getInstance().synchWithDB();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-   /*     while(true) {
-            if (ModelUtilities.getCurrentUser() == null)
-                startActivity(new Intent(this, LoginActivity.class));
-            else
-                break;
-        }*/
     }
 
 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.test1:
-                startActivity(new Intent(this, BorrowerActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.test2:
                 startActivity(new Intent(this, LoginActivity.class));

@@ -218,7 +218,7 @@ public class Proposal implements Parcelable {
 
     @DynamoDBAttribute
     public String getLenderAccountNumber() {
-        return lenderAccountNumber;
+        return "56c66be6a73e492741507e04";
     }
 
     public void setLenderAccountNumber(String lenderAccountNumber) {

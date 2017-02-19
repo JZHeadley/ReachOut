@@ -162,6 +162,43 @@ public class NessieService {
         });
     }
 
+    public static void invest(final Proposal proposal)
+    {
+        client.ACCOUNT.getAccount(proposal.getLenderAccountNumber(), new NessieResultsListener() {
+            @Override
+            public void onSuccess(Object result) {
+                Account account = (Account) result;
+
+                if(account.getBalance() >= proposal.getAmountBorrowed())
+                {
+                    Transfer transfer = new Transfer.Builder()
+                            .medium(TransactionMedium.BALANCE)
+                            .payeeId(proposal.getAccountNumber())
+                            .transactionDate(DateFormat.getDateTimeInstance().format(new Date()))
+                            .amount(proposal.getAmountBorrowed())
+                            .description("Invest in proposal")
+                            .build();
+
+                    client.TRANSFER.createTransfer(proposal.getLenderAccountNumber(), transfer, new NessieResultsListener() {
+                        @Override
+                        public void onSuccess(Object result) {
+                            PostResponse<Transfer> response = (PostResponse<Transfer>) result;
+                            proposal.funded(proposal.getLenderAccountNumber());
+                        }
+                        @Override
+                        public void onFailure(NessieError error){
+                            Log.d(TAG, "onFailure: "+error);
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onFailure(NessieError error){
+                Log.d(TAG, "onFailure: "+error);
+            }
+        });
+    }
+
     public static int getBalance(final Proposal proposal)
     {
         final int[] balance = new int[1];

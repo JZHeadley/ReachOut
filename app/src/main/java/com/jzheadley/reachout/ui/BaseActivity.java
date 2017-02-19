@@ -24,10 +24,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Constants constants = new Constants();
-        for (Person person : (new ArrayList<Person>(constants.people))) {
-            Log.d(TAG, "onCreate: " + person);
-            ModelSingleton.getInstance().createPerson(person);
-        }
     }
 
     @Override

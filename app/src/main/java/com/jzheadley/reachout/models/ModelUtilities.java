@@ -6,6 +6,7 @@ import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Random;
@@ -18,6 +19,26 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class ModelUtilities {
+
+    public static ArrayList<Person> getLeaders() {
+        ArrayList<Person> result = new ArrayList();
+        for (Person person : ModelSingleton.getInstance().getPeople().values()) {
+            if (person.isLeader()) {
+                result.add(person);
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Person> getBorrowers() {
+        ArrayList<Person> result = new ArrayList();
+        for (Person person : ModelSingleton.getInstance().getPeople().values()) {
+            if (!person.isLeader()) {
+                result.add(person);
+            }
+        }
+        return result;
+    }
 
     public static Person getCurrentUser() {
         SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE); //Check import version
