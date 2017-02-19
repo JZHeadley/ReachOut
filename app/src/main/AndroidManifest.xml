@@ -40,8 +40,11 @@
             android:parentActivityName=".ui.BorrowerActivity" />
         <activity
             android:name=".ui.ViewProposalActivity"
-            android:parentActivityName=".ui.BorrowerActivity" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:parentActivityName=".ui.BorrowerActivity" />
+        <activity
+            android:name=".ui.SetPatternPassword"
+            android:parentActivityName=".ui.RegisterActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

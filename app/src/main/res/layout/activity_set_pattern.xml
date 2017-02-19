@@ -4,5 +4,15 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/please_swipe_the_dots_to_create_your_pattern" />
+
     <include layout="@layout/pattern_lock_view" />
+
+    <Button
+        android:id="@+id/submit_pattern_registration"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
 </LinearLayout>

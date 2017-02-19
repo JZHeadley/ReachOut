@@ -6,7 +6,7 @@
     android:padding="15dp">
 
     <LinearLayout
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:orientation="vertical">
 
@@ -15,7 +15,7 @@
             android:layout_width="match_parent">
 
             <EditText
-                android:hint="Name"
+                android:hint="@string/name"
                 android:id="@+id/name_input"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -30,17 +30,12 @@
             android:onClick="onImageClick"
             android:src="@drawable/image_placeholder" />
 
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:onClick="onPatternClick"
-            android:text="@string/create_pattern_password" />
 
         <Button
             android:id="@+id/submit_registration"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:onClick="onClick"
-            android:text="Submit" />
+            android:text="@string/submit" />
     </LinearLayout>
 </ScrollView>

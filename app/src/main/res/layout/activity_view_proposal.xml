@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_view_proposal"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     android:orientation="vertical"
     tools:context="com.jzheadley.reachout.ui.ViewProposalActivity">
 
     <TextView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proposal Information"
+        android:layout_width="match_parent"
+        android:text="@string/proposal_information"
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:textSize="30sp"
-        android:textAlignment="center" />
+        android:textSize="30sp" />
 
     <com.jzheadley.reachout.views.ThreeButtonView
+        android:clickable="false"
         android:id="@+id/three_button_get_loan_amount"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:clickable="false" />
+        android:layout_width="wrap_content" />
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_repayment_amount"

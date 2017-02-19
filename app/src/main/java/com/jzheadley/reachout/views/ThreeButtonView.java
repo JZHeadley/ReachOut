@@ -137,6 +137,7 @@ public class ThreeButtonView extends LinearLayout {
         };
 
         recognitionProgressView = ((RecognitionProgressView) dialog.findViewById(R.id.recognition_view));
+        recognitionProgressView.play();
         recognitionProgressView.setRecognitionListener(new RecognitionListenerAdapter() {
             @Override
             public void onBeginningOfSpeech() {

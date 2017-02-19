@@ -31,7 +31,6 @@ public class Person implements Parcelable {
     private boolean isLeader = false;
     // private String idOfConfirmingLeader = " ";
     private ArrayList<String> proposals;
-
     public Person() {
         proposals = new ArrayList<>();
         proposals.add(" ");
@@ -61,6 +60,20 @@ public class Person implements Parcelable {
         this.passHash = in.readString();
         this.isLeader = in.readByte() != 0;
         this.proposals = in.createStringArrayList();
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+            "name='" + name + '\'' +
+            ", personId='" + personId + '\'' +
+            ", longitude=" + longitude +
+            ", lattitude=" + lattitude +
+            ", profile_picture='" + profile_picture + '\'' +
+            ", passHash='" + passHash + '\'' +
+            ", isLeader=" + isLeader +
+            ", proposals=" + proposals +
+            '}';
     }
 
     @DynamoDBHashKey(attributeName = "personId")
