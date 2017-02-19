@@ -1,6 +1,5 @@
 package com.jzheadley.reachout.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +19,7 @@ import java.sql.Date;
  */
 public class ViewInvestorProposalActivity extends BaseActivity {
 
+    public static final String TAG = "ViewInvestor";
     ThreeButtonView loanAmount;
     ThreeButtonView loanRepayAmount;
     ThreeButtonView moneyMaking;
@@ -28,13 +28,13 @@ public class ViewInvestorProposalActivity extends BaseActivity {
     ThreeButtonView reason;
     Proposal proposal;
     Button b1;
-    public static final String TAG = "ViewInvestor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_investor_proposal);
         proposal  = getIntent().getExtras().getParcelable("singleProposal");
+        b1 = (Button) findViewById(R.id.angry_btn);
 
         loanAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_loan_amount));
         loanRepayAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_repayment_amount));
