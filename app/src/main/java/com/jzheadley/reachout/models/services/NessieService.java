@@ -26,10 +26,11 @@ import java.util.Random;
 public class NessieService {
     private static final String TAG = "NessieService";
     private static NessieClient client = NessieClient.getInstance(App.get().getResources().getString(R.string.nessie_api_key));
-    private String date = DateFormat.getDateTimeInstance().format(new Date());
-    private String accountNumber;
+    //private String date = DateFormat.getDateTimeInstance().format(new Date());
+    //private String accountNumber;
 
-    public void createAccount(final Proposal proposal){
+    public static void createAccount(final Proposal proposal){
+        Log.d(TAG, "createAccount: Called");
         Account account = new Account.Builder()
                 .balance(0)
                 .nickname(proposal.getPersonId())
@@ -38,64 +39,65 @@ public class NessieService {
                 .accountNumber(getAccountId())
                 .build();
 
-        client.ACCOUNT.createAccount(Integer.toString(R.string.customer_id), account, new NessieResultsListener() {
+        client.ACCOUNT.createAccount(App.get().getString(R.string.customer_id), account, new NessieResultsListener() {
             @Override
             public void onSuccess(Object result) {
                 PostResponse<Account> response = (PostResponse<Account>) result;
                 Account newAccount = response.getObjectCreated();
-                Log.i(TAG, "createAccount/onSuccess:  accountNumber: " + accountNumber);
-                proposal.submitted_online(newAccount.getAccountNumber());
+                Log.d(TAG, "createAccount/onSuccess:  accountNumber: " + newAccount.getId());
+                proposal.submitted_online(newAccount.getId());
             }
             @Override
             public void onFailure(NessieError error){
-                Log.d(TAG, "onFailure: "+error);
+                Log.d(TAG, "(CreateAccount onFailure1: "+error.getMessage() + "\n" + error.toString());
             }
         });
     }
 
-    public void checkFunds() { //check for funding
-        //final ArrayList<Proposal> props = new ArrayList<>(); //TODO: we will create a singleton to get you all this;
-
-        //for(int i = 0; i < props.size(); i++)
+    public static void checkFunds() { //check for funding
+        Log.d(TAG, "checkFunds: Called");
         for (String prop : ModelSingleton.getInstance().getProposals().keySet())
         {
             final Proposal proposal = ModelSingleton.getInstance().getProposals().get(prop);
+            Log.d(TAG, "checkFunds: proposalDesc/state/account:" + proposal.getBusinessDescription() + "/" + proposal.getState() + "/" + proposal.getAccountNumber());
             client.ACCOUNT.getAccount(proposal.getAccountNumber(), new NessieResultsListener() {
                 @Override
                 public void onSuccess(Object result) {
                     Account account = (Account) result;
-
+                    Log.d(TAG, "onSuccess: balance:" + account.getBalance());
                     if(account.getBalance() >= proposal.getAmountBorrowed())
                     {
-
+                        Log.d(TAG, "onSuccess: Balance increased");
                         client.TRANSFER.getTransfers(proposal.getAccountNumber(), new NessieResultsListener() {
                             @Override
                             public void onSuccess(Object result) {
+
                                 ArrayList<Transfer> transfers = (ArrayList<Transfer>) result;
+                                Log.d(TAG, "onSuccess: Funding!");
                                 proposal.funded(transfers.get(0).getPayerId());
                             }
                             @Override
                             public void onFailure(NessieError error){
-                                Log.d(TAG, "onFailure: "+error);
+                                Log.d(TAG, "onFailure2: "+error.getMessage());
                             }
                         });
                     }
                 }
                 @Override
                 public void onFailure(NessieError error){
-                    Log.d(TAG, "onFailure: "+error);
+                    Log.d(TAG, "onFailure3: "+error.getMessage());
                 }
 
             });
         }
     }
 
-    public void cashWithdrawl(Proposal proposal, int bankAccountNumber)
+    public static void cashWithdrawl(Proposal proposal, int bankAccountNumber)
     {
         Transfer transfer = new Transfer.Builder()
                 .medium(TransactionMedium.BALANCE)
                 .payeeId(Integer.toString(bankAccountNumber))
-                .transactionDate(date)
+                .transactionDate(DateFormat.getDateTimeInstance().format(new Date()))
                 .amount(proposal.getAmountBorrowed())
                 .description("Money from proposal account to bank for withdrawl")
                 .build();
@@ -112,7 +114,7 @@ public class NessieService {
         });
     }
 
-    public void repay(final Proposal proposal)
+    public static void repay(final Proposal proposal)
     { //check balance of prop, if >= repayment amount send to lender
         client.ACCOUNT.getAccount(proposal.getAccountNumber(), new NessieResultsListener() {
             @Override
@@ -124,7 +126,7 @@ public class NessieService {
                         Transfer transfer = new Transfer.Builder()
                             .medium(TransactionMedium.BALANCE)
                             .payeeId(proposal.getLenderAccountNumber())
-                            .transactionDate(date)
+                            .transactionDate(DateFormat.getDateTimeInstance().format(new Date()))
                             .amount(proposal.getAmountToBeRepayed())
                             .description("Repay to lender")
                             .build();
@@ -149,7 +151,7 @@ public class NessieService {
         });
     }
 
-    private String getTransferId(){
+    private static String getTransferId(){
         String transferId;
         int p1,p2,p3;
         Random random = new Random();
@@ -160,7 +162,7 @@ public class NessieService {
         return transferId;
     }
 
-    private String getAccountId(){
+    private static String getAccountId(){
         String accountId;
         int p1,p2;
         Random random = new Random();
@@ -170,10 +172,8 @@ public class NessieService {
         return accountId;
     }
 
-    private NessieService() {
-    }
+   // private NessieService() {
+    //}
 
-    public static NessieClient getInstance() {
-        return client;
-    }
+
 }

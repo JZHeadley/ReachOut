@@ -12,24 +12,26 @@ import java.util.Set;
 public class ModelUtilities {
 
     public static int creditScore(Collection<Proposal> proposals) {
-        int creditScore = 0;
+        int rawScore = 0;
         for (Proposal prop : proposals) {
             switch (prop.getState()) {
                 case Proposal.STATE_FUNDED:
-                    creditScore -= prop.getAmountToBeRepayed() / 5;
+                    rawScore -= prop.getAmountToBeRepayed() / 20;
                 case Proposal.STATE_CASH_WITHDRAWN:
-                    creditScore -= prop.getAmountToBeRepayed() / 5;
+                    rawScore -= prop.getAmountToBeRepayed() / 20;
                 case Proposal.STATE_CASH_REPAID:
                     if (dueDate(prop) > prop.getDateFunded()) {
-                        creditScore += prop.getAmountToBeRepayed() / 10;
+                        rawScore += prop.getAmountToBeRepayed() / 10;
                     } else {
-                        creditScore -= prop.getAmountToBeRepayed() / 10;
+                        rawScore -= prop.getAmountToBeRepayed() / 5;
                     }
                     break;
                 default:
             }
         }
-        return creditScore;
+        double subtractionTerm = Math.max(25, rawScore + 50);
+        double flattened = Math.max(0, 1000.0 - (25000.0 / subtractionTerm));
+        return (int) flattened;
     }
 
     public static long dueDate(Proposal proposal) {

@@ -21,7 +21,7 @@ public class ModelSingleton {
     private HashMap<String, Proposal> proposals = new HashMap<>();
     private HashSet<Person> newPeople = new HashSet<>();
     private HashSet<Proposal> newProposals = new HashSet<>();
-    private NessieService nessieService;
+    //private NessieService nessieService;
 
     private ModelSingleton() {
         synchWithDB();
@@ -92,8 +92,13 @@ public class ModelSingleton {
 
 
             for (Proposal prop : newProposals) {
-                nessieService.createAccount(prop);
-                DynamoMapperClient.getMapper().save(prop);
+                Log.d(TAG, "doInBackground: creating new proposal");
+                if (prop == null) {
+                    Log.i(TAG, "doInBackground: Null proposal in newProposals");
+                } else {
+                    NessieService.createAccount(prop);
+                    DynamoMapperClient.getMapper().save(prop);
+                }
             }
 
             newProposals.clear();
@@ -103,6 +108,7 @@ public class ModelSingleton {
             for (Proposal prop : propResult) {
                 addProposal(prop);
             }
+            NessieService.checkFunds();
 
             return null;
         }

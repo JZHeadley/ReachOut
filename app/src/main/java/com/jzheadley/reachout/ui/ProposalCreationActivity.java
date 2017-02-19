@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.jzheadley.reachout.Constants;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.views.ThreeButtonView;
 import com.sakebook.android.uploadhelper.UploadHelper;
@@ -23,6 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ProposalCreationActivity extends BaseActivity implements UploadTaskCallback {
@@ -119,7 +121,11 @@ public class ProposalCreationActivity extends BaseActivity implements UploadTask
         proposal.setBusinessDescription(moneyMaking.getInputText());
         proposal.setPurchaseDescription(loanPurchase.getInputText());
         proposal.setPlanDescription(reason.getInputText());
-        proposal.setPersonId("JoeFarmer");
+
+        //Person currentUser =
+        proposal.setPersonId("JoeFarmer"); //TODO: Make it the logged in person
+        //ArrayList<Proposal> priorProposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
+        proposal.setCreditScore(String.valueOf(673));
         proposal.submit_offline();
 
         ModelSingleton.getInstance().createProposal(proposal);
