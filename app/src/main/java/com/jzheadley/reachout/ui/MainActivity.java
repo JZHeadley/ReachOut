@@ -8,7 +8,6 @@ import android.view.View;
 import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
-import com.jzheadley.reachout.models.ModelUtilities;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -29,7 +28,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, BorrowerActivity.class));
                 break;
             case R.id.test2:
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, BorrowerActivity.class));
                 break;
             case R.id.test3:
                 startActivity(new Intent(this, InvestorActivity.class));
