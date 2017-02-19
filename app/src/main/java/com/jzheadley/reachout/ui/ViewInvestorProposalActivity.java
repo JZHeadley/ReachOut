@@ -88,6 +88,7 @@ public class ViewInvestorProposalActivity extends BaseActivity {
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         reason.setEditTextText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
 
+
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: state "+proposal.getState());

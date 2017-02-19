@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, BorrowerActivity.class));
                 break;
             case R.id.test2:
-                startActivity(new Intent(this, BorrowerActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.test3:
                 startActivity(new Intent(this, InvestorActivity.class));

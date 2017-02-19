@@ -13,8 +13,6 @@ import android.widget.ProgressBar;
 import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
-import com.jzheadley.reachout.models.ModelUtilities;
-import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.ArrayList;
@@ -37,21 +35,15 @@ public class BorrowerActivity extends BaseActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE); //Check import version
-        String currentUserId = preferences.getString("personId",null);
+        String currentUserId = preferences.getString("personId", null);
         Log.d(TAG, "onCreate: CurrentUserID:" + currentUserId);
-        Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
+        //Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
         ArrayList<Proposal> proposals;
-        if (currentUser.isLeader()) {
-            proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
-        } else {
-            proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
-        }
-        int creditScore = ModelUtilities.creditScore(proposals);
+        proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
 
         adapter = new MyProposalsAdapter(proposals);
         recyclerView.setAdapter(adapter);
         Log.d(TAG, "onCreate: " + proposals);
-
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.submit_new_proposal);

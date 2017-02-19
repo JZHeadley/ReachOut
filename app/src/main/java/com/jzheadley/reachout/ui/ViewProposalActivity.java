@@ -95,7 +95,7 @@ public class ViewProposalActivity extends BaseActivity {
                 Intent cash, repay;
                 cash = new Intent(ViewProposalActivity.this, CashActivity.class);
                 repay = new Intent(ViewProposalActivity.this, RepayActivity.class);
-                if (proposal.getState() == Proposal.STATE_FUNDED) {
+                if (proposal.getState() <= Proposal.STATE_FUNDED) {
                     cash.putExtra("proposal", proposal);
                     startActivity(cash);
                 } else if (proposal.getState() == Proposal.STATE_CASH_WITHDRAWN) {
