@@ -13,6 +13,7 @@ import com.jzheadley.reachout.models.services.NessieService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ModelSingleton {
     private static final String TAG = "ModelSingleton";
@@ -37,7 +38,10 @@ public class ModelSingleton {
     }
 
     public void putProposal(Proposal proposal) {
-        proposals.put(proposal.getProposalId(), proposal);
+        Proposal old = proposals.get(proposal.getProposalId());
+        if (old == null || old.getState() <= proposal.getState()) {
+            proposals.put(proposal.getProposalId(), proposal);
+        }
     }
 
     /*For newly created people/proposals */
@@ -92,14 +96,15 @@ public class ModelSingleton {
 
 
             for (Proposal prop : proposals.values()) {
+                Log.d(TAG, "doInBackground: beginning of update: " + prop.getState() + prop.getBusinessDescription());
                 Log.d(TAG, "doInBackground: creating new proposal");
                 if (prop == null || prop.getState() >=2 ) {
-                    Log.i(TAG, "doInBackground: ignoring proposal");
+                    Log.i(TAG, "doInBackground: ignoring proposal "+prop.getBusinessDescription()+prop.getState());
                 } else {
                     if(prop.getState() == Proposal.STATE_SUBMITTED_OFFLINE)
                         NessieService.createAccount(prop);
-                    DynamoMapperClient.getMapper().save(prop);
                 }
+                DynamoMapperClient.getMapper().save(prop);
             }
 
             newProposals.clear();
@@ -108,8 +113,13 @@ public class ModelSingleton {
             propResult.size();
             for (Proposal prop : propResult) {
                 putProposal(prop);
+                Log.d(TAG, "doInBackground: after put in update: " + prop.getState() + prop.getBusinessDescription());
             }
-            NessieService.checkFunds();
+            //NessieService.checkFunds();
+            propResult = DynamoMapperClient.getMapper().scan(Proposal.class, propScanExpression);
+            for (Proposal prop : propResult) {
+                Log.d(TAG, "doInBackground: end of update: " + prop.getState() + prop.getBusinessDescription());
+            }
 
             return null;
         }

@@ -46,6 +46,7 @@ public class NessieService {
                 Account newAccount = response.getObjectCreated();
                 Log.d(TAG, "createAccount/onSuccess:  accountNumber: " + newAccount.getId());
                 proposal.submitted_online(newAccount.getId());
+                checkFunds();
             }
             @Override
             public void onFailure(NessieError error){
@@ -93,6 +94,7 @@ public class NessieService {
 
             });
         }
+        ModelSingleton.getInstance().synchWithDB();
     }
 
     public static void cashWithdrawl(final Proposal proposal, String bankAccountNumber)
@@ -112,13 +114,15 @@ public class NessieService {
                 PostResponse<Transfer> response = (PostResponse<Transfer>) result;
                 proposal.cashWithdrawn();
                 Log.d(TAG, "onSuccess: withdrawn called "+proposal.getState());
+                ModelSingleton.getInstance().putProposal(proposal);
+                ModelSingleton.getInstance().synchWithDB();
             }
             @Override
             public void onFailure(NessieError error){
                 Log.d(TAG, "onFailure: "+error);
             }
         });
-        ModelSingleton.getInstance().synchWithDB();
+
     }
 
     public static void repay(final Proposal proposal)
