@@ -1,5 +1,6 @@
 package com.jzheadley.reachout.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,13 +19,14 @@ public class ViewProposalActivity extends BaseActivity {
     ThreeButtonView loanLength;
     ThreeButtonView loanPurchase;
     ThreeButtonView reason;
+    Proposal proposal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_proposal);
-        Proposal proposal = getIntent().getExtras().getParcelable("singleProposal");
+        proposal  = getIntent().getExtras().getParcelable("singleProposal");
 
         loanAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_loan_amount));
         loanRepayAmount = ((ThreeButtonView) findViewById(R.id.three_button_get_repayment_amount));
@@ -55,8 +57,8 @@ public class ViewProposalActivity extends BaseActivity {
         loanAmount.setPromptText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
         loanAmount.setEditTextText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
 
-        loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
-        loanRepayAmount.setEditTextText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
+        loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) +" "+ getString(R.string.response_loan_repayment_amount));
+        loanRepayAmount.setEditTextText(Integer.toString(proposal.getAmountToBeRepayed()) +" "+ getString(R.string.response_loan_repayment_amount));
 
         moneyMaking.setPromptText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());
         moneyMaking.setEditTextText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());

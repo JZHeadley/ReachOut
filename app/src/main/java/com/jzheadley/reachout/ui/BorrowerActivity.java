@@ -56,12 +56,9 @@ public class BorrowerActivity extends BaseActivity {
             }
         });
 
-
-
 //        riskBar = (ProgressBar)  findViewById(R.id.riskBar);
 //        riskBar.setMax(1000000);
 //        riskBar.setProgress(creditScore);
-
 
     }
 
