@@ -14,6 +14,7 @@ import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.ModelUtilities;
+import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.ArrayList;
