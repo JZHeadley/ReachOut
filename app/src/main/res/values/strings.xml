@@ -9,7 +9,7 @@
     <string name="prompt_loan_how_help">How will this loan help you make money?</string>
     <string name="prompt_show_to_banker">Show this screen to the banker to get your money</string>
     <string name="response_loan_amount">This loan is for</string>
-    <string name="response_loan_repayment_amount">dollars will be repayed</string>
+    <string name="response_loan_repayment_amount"> dollars will be repayed</string>
     <string name="response_loan_repayment_date">This loan will need to be repayed by</string>
     <string name="response_money_making">The source of income is</string>
     <string name="response_loan_purchase">This loan will be used to purchase</string>
