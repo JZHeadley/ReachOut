@@ -35,10 +35,15 @@ public class BorrowerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        // Person currentUser = (Person) this.getApplicationContext().getSharedPreferences("currentUser",MODE_PRIVATE);
-        //ArrayList<Proposal> proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
-        //TODO: replace this with the above code once currentUser is implemented
-        ArrayList<Proposal> proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
+        //String currentUserId = this.getApplicationContext().getSharedPreferences("currentUser",MODE_PRIVATE).toString();
+        //Log.d(TAG, "onCreate: CurrentUserID:" + currentUserId);
+        //Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
+        ArrayList<Proposal> proposals;
+        if (true) { //TODO currentUser.isLeader()
+            proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
+        } else {
+            //proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
+        }
         int creditScore = ModelUtilities.creditScore(proposals);
 
         adapter = new MyProposalsAdapter(proposals);

@@ -93,8 +93,8 @@ public class ModelSingleton {
 
             for (Proposal prop : proposals.values()) {
                 Log.d(TAG, "doInBackground: creating new proposal");
-                if (prop == null) {
-                    Log.i(TAG, "doInBackground: Null proposal in newProposals");
+                if (prop == null || prop.getState() >=2 ) {
+                    Log.i(TAG, "doInBackground: ignoring proposal");
                 } else {
                     NessieService.createAccount(prop);
                     DynamoMapperClient.getMapper().save(prop);

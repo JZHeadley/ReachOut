@@ -18,18 +18,38 @@
         android:fontFamily="sans-serif" />
 
 
-    <com.jzheadley.reachout.views.ThreeButtonView
-                android:id="@+id/three_button_get_cash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/account_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                tools:text=""
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                />
+    <com.jzheadley.reachout.views.ThreeButtonView
+        android:id="@+id/three_button_get_cash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter account number"/>
+
+    <EditText
+        android:id="@+id/account_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        tools:text=""
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        />
+    <TextView
+        android:id="@+id/loan_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+
+    <Button
+        android:id="@+id/withdrawl_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Submit"
+        android:onClick="onClick"/>
 </LinearLayout>

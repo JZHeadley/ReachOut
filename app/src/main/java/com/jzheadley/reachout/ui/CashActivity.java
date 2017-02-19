@@ -2,10 +2,12 @@ package com.jzheadley.reachout.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
+import com.jzheadley.reachout.models.services.NessieService;
 import com.jzheadley.reachout.views.ThreeButtonView;
 
 public class CashActivity extends BaseActivity {
@@ -14,6 +16,8 @@ public class CashActivity extends BaseActivity {
     private ThreeButtonView getCash;
     private TextView accountNumber;
     private Proposal proposal;
+    private TextView loanAmount;
+    private Button b1;
 
 
     @Override
@@ -27,9 +31,18 @@ public class CashActivity extends BaseActivity {
         getCash.setEditTextVisibility(View.INVISIBLE);
         getCash.setAddResponseVisibility(View.INVISIBLE);
         getCash.setPlayResponseVisibility(View.INVISIBLE);
+        getCash.setPictureVisibility(View.INVISIBLE);
         accountNumber = (TextView) findViewById(R.id.account_number);
-        accountNumber.setText(proposal.getAccountNumber());
+        accountNumber.setHint("Account Number");
+        accountNumber.setText("56c66be6a73e492741507e04");
+        loanAmount = (TextView) findViewById(R.id.loan_amount);
+        loanAmount.setText("Withdrawl amount: $"+proposal.getAmountBorrowed());
+        b1 = (Button) findViewById(R.id.withdrawl_button);
+        b1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                NessieService.cashWithdrawl(proposal,accountNumber.getText().toString());
+            }
+        });
     }
 
 }
-

@@ -66,7 +66,7 @@ public class NessieService {
                     Account account = (Account) result;
                     Log.d(TAG, "onSuccess: balance:" + account.getBalance());
                     if(proposal.getState() == Proposal.STATE_SUBMITTED_ONLINE
-                       &&account.getBalance() >= proposal.getAmountBorrowed())
+                            &&account.getBalance() >= proposal.getAmountBorrowed())
                     {
                         Log.d(TAG, "onSuccess: Balance increased");
                         client.TRANSFER.getTransfers(proposal.getAccountNumber(), new NessieResultsListener() {
@@ -95,11 +95,11 @@ public class NessieService {
         }
     }
 
-    public static void cashWithdrawl(Proposal proposal, int bankAccountNumber)
+    public static void cashWithdrawl(Proposal proposal, String bankAccountNumber)
     {
         Transfer transfer = new Transfer.Builder()
                 .medium(TransactionMedium.BALANCE)
-                .payeeId(Integer.toString(bankAccountNumber))
+                .payeeId(bankAccountNumber)
                 .transactionDate(DateFormat.getDateTimeInstance().format(new Date()))
                 .amount(proposal.getAmountBorrowed())
                 .description("Money from proposal account to bank for withdrawl")
@@ -108,6 +108,7 @@ public class NessieService {
         client.TRANSFER.createTransfer(proposal.getAccountNumber(), transfer, new NessieResultsListener() {
             @Override
             public void onSuccess(Object result) {
+                Log.d(TAG, "onSuccess: Money Transfered");
                 PostResponse<Transfer> response = (PostResponse<Transfer>) result;
             }
             @Override
@@ -115,6 +116,7 @@ public class NessieService {
                 Log.d(TAG, "onFailure: "+error);
             }
         });
+
     }
 
     public static void repay(final Proposal proposal)
@@ -126,7 +128,7 @@ public class NessieService {
 
                 if(account.getBalance() >= proposal.getAmountToBeRepayed())
                 {
-                        Transfer transfer = new Transfer.Builder()
+                    Transfer transfer = new Transfer.Builder()
                             .medium(TransactionMedium.BALANCE)
                             .payeeId(proposal.getLenderAccountNumber())
                             .transactionDate(DateFormat.getDateTimeInstance().format(new Date()))
@@ -175,7 +177,7 @@ public class NessieService {
         return accountId;
     }
 
-   // private NessieService() {
+    // private NessieService() {
     //}
 
 
