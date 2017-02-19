@@ -3,6 +3,7 @@ package com.jzheadley.reachout.models;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.Collection;
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -29,8 +30,10 @@ public class ModelUtilities {
                 default:
             }
         }
+        Random random = new Random();
+        int p1 = random.nextInt(500);
         double subtractionTerm = Math.max(25, rawScore + 50);
-        double flattened = Math.max(0, 1000.0 - (25000.0 / subtractionTerm));
+        double flattened = Math.min(850, Math.max(0, 1200.0 - (25000.0 / subtractionTerm) - (double) p1));
         return (int) flattened;
     }
 

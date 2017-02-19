@@ -32,23 +32,23 @@ public class ModelSingleton {
     }
 
     /*For updates from database */
-    public void addPerson(Person person) {
+    public void putPerson(Person person) {
         people.put(person.getPersonId(), person);
     }
 
-    public void addProposal(Proposal proposal) {
+    public void putProposal(Proposal proposal) {
         proposals.put(proposal.getProposalId(), proposal);
     }
 
     /*For newly created people/proposals */
     public void createPerson(Person person) {
         newPeople.add(person);
-        addPerson(person);
+        putPerson(person);
     }
 
     public void createProposal(Proposal proposal) {
         newProposals.add(proposal);
-        addProposal(proposal);
+        putProposal(proposal);
     }
 
     /* Getters/Setters */
@@ -78,8 +78,8 @@ public class ModelSingleton {
 
         @Override
         protected Void doInBackground(Void... params) {
-            Log.d(TAG, "doInBackground: adding people to database?");
-            for (Person pers : newPeople) {
+            Log.d(TAG, "doInBackground: SYNCHING!");
+            for (Person pers : people.values()) {
                 DynamoMapperClient.getMapper().save(pers);
             }
             newPeople.clear();
@@ -87,11 +87,11 @@ public class ModelSingleton {
             PaginatedScanList<Person> result = DynamoMapperClient.getMapper().scan(Person.class, scanExpression);
             result.size();
             for (Person pers : result) {
-                addPerson(pers);
+                putPerson(pers);
             }
 
 
-            for (Proposal prop : newProposals) {
+            for (Proposal prop : proposals.values()) {
                 Log.d(TAG, "doInBackground: creating new proposal");
                 if (prop == null) {
                     Log.i(TAG, "doInBackground: Null proposal in newProposals");
@@ -106,7 +106,7 @@ public class ModelSingleton {
             PaginatedScanList<Proposal> propResult = DynamoMapperClient.getMapper().scan(Proposal.class, propScanExpression);
             propResult.size();
             for (Proposal prop : propResult) {
-                addProposal(prop);
+                putProposal(prop);
             }
             NessieService.checkFunds();
 

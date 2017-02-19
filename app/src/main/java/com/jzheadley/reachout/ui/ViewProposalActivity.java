@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jzheadley.reachout.R;
+import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.ModelUtilities;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.views.ThreeButtonView;
@@ -58,5 +59,7 @@ public class ViewProposalActivity extends AppCompatActivity {
         loanLength.setPromptText(getString(R.string.response_loan_repayment_date) + " " + new Date(ModelUtilities.dueDate(proposal)));
         loanPurchase.setPromptText(getString(R.string.response_loan_purchase) + " " + proposal.getPurchaseDescription());
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
+
+        ModelSingleton.getInstance().synchWithDB();
     }
 }

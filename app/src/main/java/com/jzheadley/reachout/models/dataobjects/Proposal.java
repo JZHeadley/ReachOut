@@ -119,7 +119,7 @@ public class Proposal implements Parcelable {
     public void submitted_online(String accountNumber) {
             state = STATE_SUBMITTED_ONLINE;
             this.accountNumber = accountNumber;
-            ModelSingleton.getInstance().synchWithDB();
+            //ModelSingleton.getInstance().synchWithDB();
         }
 
 
@@ -129,7 +129,7 @@ public class Proposal implements Parcelable {
     public void funded(String lenderAccountNumber) {
         Log.d(TAG, "funded: Called");
         setLenderAccountNumber(lenderAccountNumber);
-        state = STATE_FUNDED;
+        this.state = STATE_FUNDED;
         this.lenderAccountNumber = lenderAccountNumber;
         this.dateFunded = System.currentTimeMillis();
     }

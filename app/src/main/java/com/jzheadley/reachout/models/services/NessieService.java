@@ -65,7 +65,8 @@ public class NessieService {
                 public void onSuccess(Object result) {
                     Account account = (Account) result;
                     Log.d(TAG, "onSuccess: balance:" + account.getBalance());
-                    if(account.getBalance() >= proposal.getAmountBorrowed())
+                    if(proposal.getState() == Proposal.STATE_SUBMITTED_ONLINE
+                       &&account.getBalance() >= proposal.getAmountBorrowed())
                     {
                         Log.d(TAG, "onSuccess: Balance increased");
                         client.TRANSFER.getTransfers(proposal.getAccountNumber(), new NessieResultsListener() {
@@ -75,6 +76,8 @@ public class NessieService {
                                 ArrayList<Transfer> transfers = (ArrayList<Transfer>) result;
                                 Log.d(TAG, "onSuccess: Funding!");
                                 proposal.funded(transfers.get(0).getPayerId());
+                                Log.d(TAG, "onSuccess: state should be 3" + proposal.getState());
+
                             }
                             @Override
                             public void onFailure(NessieError error){
