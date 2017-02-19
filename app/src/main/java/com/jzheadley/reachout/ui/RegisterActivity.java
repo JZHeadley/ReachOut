@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -111,11 +112,12 @@ public class RegisterActivity extends BaseActivity implements UploadTaskCallback
     }
 
     public void onClick(View view) {
+        CheckBox leader = (CheckBox) findViewById(R.id.leader);
         person.setName(((EditText) findViewById(R.id.name_input)).getText().toString());
         person.setLattitude((new Random()).nextDouble() * 100 - 50);
         person.setLongitude((new Random()).nextDouble() * 100 - 50);
-        person.setPerson_id(Integer.toString(((new Random()).nextInt(Integer.MAX_VALUE))));
-        person.setLeader((new Random().nextBoolean()));  //TODO
+        person.setPerson_id(Integer.toString(((new Random()).nextInt(Integer.MAX_VALUE-1))));
+        person.setLeader(leader.isActivated());
         Intent intent = new Intent(view.getContext(), SetPatternPassword.class);
         intent.putExtra("almost_whole_person", person);
         view.getContext().startActivity(intent);

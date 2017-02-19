@@ -29,8 +29,11 @@
             android:layout_width="fill_parent"
             android:onClick="onImageClick"
             android:src="@drawable/image_placeholder" />
-
-
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leader"
+            android:id="@+id/leader"/>
         <Button
             android:id="@+id/submit_registration"
             android:layout_height="wrap_content"

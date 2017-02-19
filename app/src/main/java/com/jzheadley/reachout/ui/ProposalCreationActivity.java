@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.jzheadley.reachout.Constants;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
+import com.jzheadley.reachout.models.ModelUtilities;
 import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 import com.jzheadley.reachout.views.ThreeButtonView;
@@ -130,7 +131,7 @@ public class ProposalCreationActivity extends BaseActivity implements UploadTask
         proposal.setPlanDescription(reason.getInputText());
 
         //Person currentUser =
-        proposal.setPersonId("JoeFarmer"); //TODO: Make it the logged in person
+        proposal.setPersonId(ModelUtilities.getCurrentUser().getPersonId());
         //ArrayList<Proposal> priorProposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
         proposal.setCreditScore(String.valueOf(673));
         proposal.submit_offline();

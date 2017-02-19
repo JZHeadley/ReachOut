@@ -21,9 +21,14 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ModelSingleton.getInstance().synchWithDB();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_person_faces);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -33,7 +38,6 @@ public class LoginActivity extends BaseActivity {
         Log.d(TAG, "onCreate: " + people);
         LoginFacesAdapter adapter = new LoginFacesAdapter(people);
         recyclerView.setAdapter(adapter);
-
     }
 
     public void onClick(View view) {

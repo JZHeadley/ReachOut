@@ -22,7 +22,7 @@ public class ViewProposalActivity extends BaseActivity {
     ThreeButtonView loanLength;
     ThreeButtonView loanPurchase;
     ThreeButtonView reason;
-    Button b1;
+    Button b1,b2;
     private static final String TAG = "ViewProposalActivity";
 
 
@@ -38,6 +38,19 @@ public class ViewProposalActivity extends BaseActivity {
         moneyMaking = ((ThreeButtonView) findViewById(R.id.three_button_get_money_making));
         loanPurchase = ((ThreeButtonView) findViewById(R.id.three_button_get_loan_purchase));
         reason = ((ThreeButtonView) findViewById(R.id.three_button_get_how_money_help));
+        b1 = (Button) findViewById(R.id.button);
+        b2 = (Button)findViewById(R.id.endorse);
+
+        if(ModelUtilities.getCurrentUser().isLeader())
+        {
+            b1.setVisibility(View.INVISIBLE);
+            b2.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            b1.setVisibility(View.VISIBLE);
+            b2.setVisibility(View.INVISIBLE);
+        }
 
         loanAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanAmount.setAddResponseVisibility(View.INVISIBLE);
@@ -61,8 +74,8 @@ public class ViewProposalActivity extends BaseActivity {
         loanAmount.setPromptText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
         loanAmount.setEditTextText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
 
-        loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
-        loanRepayAmount.setEditTextText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
+        loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) +" "+ getString(R.string.response_loan_repayment_amount));
+        loanRepayAmount.setEditTextText(Integer.toString(proposal.getAmountToBeRepayed()) +" "+ getString(R.string.response_loan_repayment_amount));
 
         moneyMaking.setPromptText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());
         moneyMaking.setEditTextText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());
@@ -76,7 +89,7 @@ public class ViewProposalActivity extends BaseActivity {
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         reason.setEditTextText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         ModelSingleton.getInstance().synchWithDB();
-        b1 = (Button) findViewById(R.id.button);
+
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: state "+proposal.getState());
@@ -90,6 +103,12 @@ public class ViewProposalActivity extends BaseActivity {
                     repay.putExtra("proposal", proposal);
                     startActivity(repay);
                 }
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ModelUtilities.endorse(ModelUtilities.getCurrentUser(),proposal);
             }
         });
     }

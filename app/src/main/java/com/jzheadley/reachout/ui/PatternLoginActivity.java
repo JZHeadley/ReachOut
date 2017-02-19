@@ -30,21 +30,19 @@ public class PatternLoginActivity extends BaseActivity {
             @Override
             public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
                 if (pattern.hashCode() == Integer.parseInt(person.getPassHash())) {
-
+                    SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
+                    preferences.edit().putString("personId", person.getPersonId()).apply();
+                }
+                else {
+                    startActivity(new Intent(materialLockView.getContext(), LoginActivity.class));
                 }
             }
         });
         ((Button) findViewById(R.id.login_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
-                preferences.edit().putString("personId", person.getPersonId()).apply();
-                /*for (Person pers : ModelSingleton.getInstance().getPeople().values()) {
-                    if (person.equals(pers)) {
-                        SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
-                        preferences.edit().putString("personId", pers.getPersonId()).apply();
-                    }
-                }*/
+               // SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
+                //preferences.edit().putString("personId", person.getPersonId()).apply();
                 v.getContext().startActivity(new Intent(v.getContext(), BorrowerActivity.class));
                 finish();
             }

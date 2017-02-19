@@ -19,7 +19,7 @@
             android:id="@+id/view_three_button_edit_text"
             android:inputType="number|textCapSentences|textMultiLine"
             android:layout_height="50dp"
-            android:layout_width="240dp"
+            android:layout_width="180dp"
             android:maxLength="500"
             android:maxLines="5"
             android:minLines="1" />

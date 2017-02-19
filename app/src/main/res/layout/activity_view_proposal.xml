@@ -55,8 +55,16 @@
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="Get Money"
+        android:layout_gravity="center"
+        android:text="$$$"
         android:onClick="onClick"/>
+    <Button
+        android:id="@+id/endorse"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:text="Endorse"
+        android:onClick="endorse"/>
 </LinearLayout>
 

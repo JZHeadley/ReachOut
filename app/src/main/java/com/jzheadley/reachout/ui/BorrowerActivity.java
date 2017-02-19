@@ -42,7 +42,7 @@ public class BorrowerActivity extends BaseActivity {
         Log.d(TAG, "onCreate: CurrentUserID:" + currentUserId);
         Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
         ArrayList<Proposal> proposals;
-        if (currentUser.isLeader()) {  //TODO: currentUser.isLeader()
+        if (currentUser.isLeader()) {
             proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
         } else {
             proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);

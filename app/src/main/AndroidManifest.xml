@@ -13,13 +13,13 @@
         android:required="true" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launchr"
-        tools:replace="android:icon"
         android:label="@string/app_name"
-        android:name=".App"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="@string/title_activity_borrower"
-            android:name=".ui.BorrowerActivity" />
-        <activity android:label="InvestorActivity"
-            android:name=".ui.InvestorActivity" />
+            android:name=".ui.BorrowerActivity"
+            android:label="@string/title_activity_borrower" />
+        <activity
+            android:name=".ui.InvestorActivity"
+            android:label="InvestorActivity" />
         <activity
             android:name=".ui.CashActivity"
             android:parentActivityName=".ui.BorrowerActivity" />
@@ -48,6 +49,7 @@
         <activity
             android:name=".ui.SetPatternPassword"
             android:parentActivityName=".ui.RegisterActivity" />
+        <activity android:name=".ui.RepayActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"

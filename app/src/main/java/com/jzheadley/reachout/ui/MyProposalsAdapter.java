@@ -47,9 +47,15 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
             ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
             pictures.remove(0);
             Log.d(TAG, "onBindViewHolder: " + pictures.toString());
-
+            String url = pictures.get(0);
+            if(pictures.get(0).length() > 0)
+                url+=".png";
+            else
+            {
+                url = holder.itemView.getContext().getResources().getDrawable(R.drawable.image_placeholder).toString();
+            }
             Glide.with(holder.itemView.getContext())
-                .load(pictures.get(0) + ".png")
+                .load(url)
                 .crossFade()
                 .fitCenter()
                 .centerCrop()
