@@ -18,6 +18,9 @@ import java.util.ArrayList;
 public class InvestorActivity extends BaseActivity {
     private static final String TAG = "InvestorActivity";
     public static boolean isInvestor = false;
+    public void setIsInvestor(boolean isInvestor){
+        this.isInvestor = isInvestor;
+    }
 
 
     private RecyclerView.Adapter adapter;

@@ -12,12 +12,9 @@ import android.widget.ProgressBar;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.ModelUtilities;
-import com.jzheadley.reachout.models.dataobjects.Person;
 import com.jzheadley.reachout.models.dataobjects.Proposal;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class BorrowerActivity extends BaseActivity {
     private static final String TAG = "BorrowerActivity";
@@ -28,6 +25,7 @@ public class BorrowerActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        InvestorActivity.isInvestor = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrower);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_proposals);
