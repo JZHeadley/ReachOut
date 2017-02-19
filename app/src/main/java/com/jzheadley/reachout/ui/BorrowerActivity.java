@@ -1,6 +1,7 @@
 package com.jzheadley.reachout.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
 import com.jzheadley.reachout.models.ModelUtilities;
@@ -35,14 +37,15 @@ public class BorrowerActivity extends BaseActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        //String currentUserId = this.getApplicationContext().getSharedPreferences("currentUser",MODE_PRIVATE).toString();
-        //Log.d(TAG, "onCreate: CurrentUserID:" + currentUserId);
-        //Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
+        SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE); //Check import version
+        String currentUserId = preferences.getString("personId",null);
+        Log.d(TAG, "onCreate: CurrentUserID:" + currentUserId);
+        Person currentUser = ModelSingleton.getInstance().getPeople().get(currentUserId);
         ArrayList<Proposal> proposals;
-        if (true) {  //TODO: currentUser.isLeader()
+        if (currentUser.isLeader()) {  //TODO: currentUser.isLeader()
             proposals = new ArrayList<>(ModelSingleton.getInstance().getProposals().values());
         } else {
-            //proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
+            proposals = ModelSingleton.getInstance().listProposalsForPerson(currentUser);
         }
         int creditScore = ModelUtilities.creditScore(proposals);
 

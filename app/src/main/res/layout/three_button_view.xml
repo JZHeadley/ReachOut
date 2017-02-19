@@ -20,7 +20,7 @@
             android:inputType="number|textCapSentences|textMultiLine"
             android:layout_height="50dp"
             android:layout_width="240dp"
-            android:maxLength="2000"
+            android:maxLength="500"
             android:maxLines="5"
             android:minLines="1" />
     </android.support.design.widget.TextInputLayout>
