@@ -39,55 +39,55 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
 
     @Override
     public void onBindViewHolder(final MyProposalViewHolder holder, int position) {
-        final Proposal proposal = proposals.get(position);
-        holder.proposalName.setText(proposal.getBusinessDescription());
-        holder.itemRequested.setText(proposal.getPurchaseDescription());
-        // holder.amountToBeBorrowed.setText(proposal.getAmountBorrowed());
-        holder.progressBar.setMax(850);
-        holder.progressBar.setProgress(Integer.parseInt(proposal.getCreditScore()));
+        if (proposals != null) {
+            final Proposal proposal = proposals.get(position);
+            if(proposal != null) {
+                holder.proposalName.setText(proposal.getBusinessDescription());
+                holder.itemRequested.setText(proposal.getPurchaseDescription());
+                // holder.amountToBeBorrowed.setText(proposal.getAmountBorrowed());
+                holder.progressBar.setMax(850);
+                holder.progressBar.setProgress(Integer.parseInt(proposal.getCreditScore()));
 
-        if (Integer.parseInt(proposal.getCreditScore())>560){
-            holder.progressStatus.setText("Low Risk");
-        }
-        else if (Integer.parseInt(proposal.getCreditScore()) > 280){
-            holder.progressStatus.setText("Medium Risk");
-        }
-        else {holder.progressStatus.setText("High Risk");}
+                if (Integer.parseInt(proposal.getCreditScore()) > 560) {
+                    holder.progressStatus.setText("Low Risk");
+                } else if (Integer.parseInt(proposal.getCreditScore()) > 280) {
+                    holder.progressStatus.setText("Medium Risk");
+                } else {
+                    holder.progressStatus.setText("High Risk");
+                }
 
-        if (proposal.getPictures().size() > 1) {
-            ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
-            pictures.remove(0);
-            Log.d(TAG, "onBindViewHolder: " + pictures.toString());
-            String url = pictures.get(0);
-            if(pictures.get(0).length() > 0)
-                url+=".png";
-            else
-            {
-                url = holder.itemView.getContext().getResources().getDrawable(R.drawable.image_placeholder).toString();
-            }
-            Glide.with(holder.itemView.getContext())
-                .load(url)
-                .crossFade()
-                .fitCenter()
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.image_placeholder)
-                .into(new GlideDrawableImageViewTarget(holder.proposalImage));
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent proposalIntent = null;
-
-                    if(InvestorActivity.returnIsInvestor()){
-                        proposalIntent = new Intent(v.getContext(), ViewInvestorProposalActivity.class);
-                        proposalIntent.putExtra("singleProposal", proposal);
-                        holder.itemView.getContext().startActivity(proposalIntent);
-                    }
+                if (proposal.getPictures().size() > 1) {
+                    ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
+                    pictures.remove(0);
+                    Log.d(TAG, "onBindViewHolder: " + pictures.toString());
+                    String url = pictures.get(0);
+                    if (pictures.get(0).length() > 0)
+                        url += ".png";
                     else {
-                        proposalIntent = new Intent(v.getContext(), ViewProposalActivity.class);
-                        proposalIntent.putExtra("singleProposal", proposal);
-                        holder.itemView.getContext().startActivity(proposalIntent);
+                        url = holder.itemView.getContext().getResources().getDrawable(R.drawable.image_placeholder).toString();
                     }
+                    Glide.with(holder.itemView.getContext())
+                            .load(url)
+                            .crossFade()
+                            .fitCenter()
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.ALL)
+                            .placeholder(R.drawable.image_placeholder)
+                            .into(new GlideDrawableImageViewTarget(holder.proposalImage));
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent proposalIntent = null;
+
+                            if (InvestorActivity.returnIsInvestor()) {
+                                proposalIntent = new Intent(v.getContext(), ViewInvestorProposalActivity.class);
+                                proposalIntent.putExtra("singleProposal", proposal);
+                                holder.itemView.getContext().startActivity(proposalIntent);
+                            } else {
+                                proposalIntent = new Intent(v.getContext(), ViewProposalActivity.class);
+                                proposalIntent.putExtra("singleProposal", proposal);
+                                holder.itemView.getContext().startActivity(proposalIntent);
+                            }
 
                     /*
                     if (proposal.getState() == 3) {
@@ -103,8 +103,10 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
                     cashIntent.putExtra("proposal", proposal);
                     v.getContext().startActivity(cashIntent);
                     */
+                        }
+                    });
                 }
-            });
+            }
         }
     }
 

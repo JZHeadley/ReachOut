@@ -120,6 +120,7 @@ public class ModelSingleton {
             for (Proposal prop : propResult) {
                 Log.d(TAG, "doInBackground: end of update: " + prop.getState() + prop.getBusinessDescription());
             }
+            proposals.remove(null);
 
             return null;
         }

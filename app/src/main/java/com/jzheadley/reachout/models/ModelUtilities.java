@@ -61,6 +61,7 @@ public class ModelUtilities {
     public static int creditScore(Collection<Proposal> proposals) {
         int rawScore = 0;
         for (Proposal prop : proposals) {
+            if (prop != null){
             switch (prop.getState()) {
                 case Proposal.STATE_FUNDED:
                     rawScore -= prop.getAmountToBeRepayed() / 20;
@@ -74,6 +75,7 @@ public class ModelUtilities {
                     }
                     break;
                 default:
+            }
             }
         }
         Random random = new Random();
