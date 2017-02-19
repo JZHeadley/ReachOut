@@ -30,9 +30,20 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:textSize="15sp" />
+        <!--
+                <TextView
+                    android:id="@+id/proposal_amount_to_borrow"
+                    android:layout_below="@+id/proposal_name"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp" />-->
 
         <TextView
-            android:id="@+id/proposal_something"
+            android:id="@+id/proposal_item_requested"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/proposal_image"
@@ -42,6 +53,18 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:textSize="12sp" />
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:id="@+id/progressbar"
+            android:layout_below="@+id/proposal_name"
+            android:layout_height="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:progressTint="@color/colorPrimary" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

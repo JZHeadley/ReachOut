@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +39,10 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
     public void onBindViewHolder(final MyProposalViewHolder holder, int position) {
         final Proposal proposal = proposals.get(position);
         holder.proposalName.setText(proposal.getBusinessDescription());
+        holder.itemRequested.setText(proposal.getPurchaseDescription());
+        // holder.amountToBeBorrowed.setText(proposal.getAmountBorrowed());
+        holder.progressBar.setMax(850);
+        holder.progressBar.setProgress(Integer.parseInt(proposal.getCreditScore()));
         if (proposal.getPictures().size() > 1) {
             ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
             pictures.remove(0);
@@ -56,8 +61,8 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
                 public void onClick(View v) {
                     Intent proposalIntent = null;
 
-                    proposalIntent = new Intent(v.getContext(),ViewProposalActivity.class);
-                    proposalIntent.putExtra("singleProposal",proposal);
+                    proposalIntent = new Intent(v.getContext(), ViewProposalActivity.class);
+                    proposalIntent.putExtra("singleProposal", proposal);
                     holder.itemView.getContext().startActivity(proposalIntent);
                     /*
                     if (proposal.getState() == 3) {
@@ -86,11 +91,17 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
     static class MyProposalViewHolder extends RecyclerView.ViewHolder {
         TextView proposalName;
         ImageView proposalImage;
+        // TextView amountToBeBorrowed;
+        ProgressBar progressBar;
+        TextView itemRequested;
 
         public MyProposalViewHolder(View itemView) {
             super(itemView);
             proposalName = (TextView) itemView.findViewById(R.id.proposal_name);
             proposalImage = (ImageView) itemView.findViewById(R.id.proposal_image);
+            progressBar = (ProgressBar) itemView.findViewById(R.id.progressbar);
+            // amountToBeBorrowed = (TextView) itemView.findViewById(R.id.proposal_amount_to_borrow);
+            itemRequested = (TextView) itemView.findViewById(R.id.proposal_item_requested);
         }
     }
 }

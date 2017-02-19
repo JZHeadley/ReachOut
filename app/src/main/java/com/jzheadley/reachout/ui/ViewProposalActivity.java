@@ -1,7 +1,6 @@
 package com.jzheadley.reachout.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jzheadley.reachout.R;
@@ -11,7 +10,7 @@ import com.jzheadley.reachout.views.ThreeButtonView;
 
 import java.sql.Date;
 
-public class ViewProposalActivity extends AppCompatActivity {
+public class ViewProposalActivity extends BaseActivity {
     ThreeButtonView loanAmount;
     ThreeButtonView loanRepayAmount;
     ThreeButtonView moneyMaking;
@@ -35,28 +34,39 @@ public class ViewProposalActivity extends AppCompatActivity {
 
         loanAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanAmount.setAddResponseVisibility(View.INVISIBLE);
-        loanAmount.setEditTextVisibility(View.INVISIBLE);
+        // loanAmount.setEditTextVisibility(View.INVISIBLE);
         loanRepayAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanRepayAmount.setAddResponseVisibility(View.INVISIBLE);
-        loanRepayAmount.setEditTextVisibility(View.INVISIBLE);
+        // loanRepayAmount.setEditTextVisibility(View.INVISIBLE);
         loanLength.setPlayResponseVisibility(View.INVISIBLE);
         loanLength.setAddResponseVisibility(View.INVISIBLE);
-        loanLength.setEditTextVisibility(View.INVISIBLE);
+        // loanLength.setEditTextVisibility(View.INVISIBLE);
         moneyMaking.setPlayResponseVisibility(View.INVISIBLE);
         moneyMaking.setAddResponseVisibility(View.INVISIBLE);
-        moneyMaking.setEditTextVisibility(View.INVISIBLE);
+        // moneyMaking.setEditTextVisibility(View.INVISIBLE);
         loanPurchase.setPlayResponseVisibility(View.INVISIBLE);
         loanPurchase.setAddResponseVisibility(View.INVISIBLE);
-        loanPurchase.setEditTextVisibility(View.INVISIBLE);
+        // loanPurchase.setEditTextVisibility(View.INVISIBLE);
         reason.setPlayResponseVisibility(View.INVISIBLE);
         reason.setAddResponseVisibility(View.INVISIBLE);
-        reason.setEditTextVisibility(View.INVISIBLE);
+        // reason.setEditTextVisibility(View.INVISIBLE);
 
         loanAmount.setPromptText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
+        loanAmount.setEditTextText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");
+
         loanRepayAmount.setPromptText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
+        loanRepayAmount.setEditTextText(Integer.toString(proposal.getAmountToBeRepayed()) + getString(R.string.response_loan_repayment_amount));
+
         moneyMaking.setPromptText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());
+        moneyMaking.setEditTextText(getString(R.string.response_money_making) + " " + proposal.getBusinessDescription());
+
         loanLength.setPromptText(getString(R.string.response_loan_repayment_date) + " " + new Date(ModelUtilities.dueDate(proposal)));
+        loanLength.setEditTextText(getString(R.string.response_loan_repayment_date) + " " + new Date(ModelUtilities.dueDate(proposal)));
+
         loanPurchase.setPromptText(getString(R.string.response_loan_purchase) + " " + proposal.getPurchaseDescription());
+        loanPurchase.setEditTextText(getString(R.string.response_loan_purchase) + " " + proposal.getPurchaseDescription());
+
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
+        reason.setEditTextText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -62,6 +63,7 @@ public class ThreeButtonView extends LinearLayout {
     public void setAddResponseVisibility(int visibility) {
         threeButtonAddResponse.setVisibility(visibility);
     }
+
     public void setPictureVisibility(int visibility) {
         threeButtonImage.setVisibility(visibility);
     }
@@ -164,8 +166,14 @@ public class ThreeButtonView extends LinearLayout {
         dialog.show();
     }
 
-    private void setEditTextText(String text) {
+    public void setEditTextText(String text) {
         threeButtonEditText.setText(text);
     }
+
+    public void setHint(String string) {
+        ((TextInputLayout) findViewById(R.id.hint)).setHint(string);
+
+    }
+
 }
 

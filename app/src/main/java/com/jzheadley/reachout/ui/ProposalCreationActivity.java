@@ -54,6 +54,13 @@ public class ProposalCreationActivity extends BaseActivity implements UploadTask
         moneyMaking.setPromptText(getString(R.string.prompt_money_making));
         loanPurchase.setPromptText(getString(R.string.prompt_loan_purchase));
         reason.setPromptText(getString(R.string.prompt_loan_how_help));
+
+        loanAmount.setHint("Loan Amount.");
+        loanRepayAmount.setHint("Loan Repayment.");
+        loanLength.setHint("Length of loan (months).");
+        moneyMaking.setHint("How this will make money.");
+        loanPurchase.setHint("What the loan will purchase.");
+        reason.setHint("How this loan will help you.");
     }
 
     @Override
