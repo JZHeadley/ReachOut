@@ -20,39 +20,39 @@
         android:clickable="false"
         android:id="@+id/three_button_get_loan_amount"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content" />
+        android:layout_width="wrap_content"
+        android:inputType= "number"/>
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_repayment_amount"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=""/>
+        android:inputType= "number"/>
+
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_loan_length"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=""/>
+        android:inputType= "number"/>
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_money_making"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=""/>
+        android:inputType= "text"/>
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_loan_purchase"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text=""/>
+        android:inputType= "text"/>
 
     <com.jzheadley.reachout.views.ThreeButtonView
         android:id="@+id/three_button_get_how_money_help"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="">
-
-    </com.jzheadley.reachout.views.ThreeButtonView>
+        android:inputType= "text"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

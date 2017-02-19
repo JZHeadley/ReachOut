@@ -40,21 +40,29 @@ public class ViewInvestorProposalActivity extends BaseActivity {
 
         loanAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanAmount.setAddResponseVisibility(View.INVISIBLE);
+        loanAmount.setPlayPromptVisibility(View.INVISIBLE);
         // loanAmount.setEditTextVisibility(View.INVISIBLE);
         loanRepayAmount.setPlayResponseVisibility(View.INVISIBLE);
         loanRepayAmount.setAddResponseVisibility(View.INVISIBLE);
+        loanRepayAmount.setPlayPromptVisibility(View.INVISIBLE);
         // loanRepayAmount.setEditTextVisibility(View.INVISIBLE);
         loanLength.setPlayResponseVisibility(View.INVISIBLE);
         loanLength.setAddResponseVisibility(View.INVISIBLE);
+        loanLength.setPlayPromptVisibility(View.INVISIBLE);
         // loanLength.setEditTextVisibility(View.INVISIBLE);
         moneyMaking.setPlayResponseVisibility(View.INVISIBLE);
         moneyMaking.setAddResponseVisibility(View.INVISIBLE);
+        moneyMaking.setPlayPromptVisibility(View.INVISIBLE);
+
         // moneyMaking.setEditTextVisibility(View.INVISIBLE);
         loanPurchase.setPlayResponseVisibility(View.INVISIBLE);
         loanPurchase.setAddResponseVisibility(View.INVISIBLE);
+        loanPurchase.setPlayPromptVisibility(View.INVISIBLE);
         // loanPurchase.setEditTextVisibility(View.INVISIBLE);
         reason.setPlayResponseVisibility(View.INVISIBLE);
         reason.setAddResponseVisibility(View.INVISIBLE);
+        reason.setPlayPromptVisibility(View.INVISIBLE);
+
         // reason.setEditTextVisibility(View.INVISIBLE);
 
         loanAmount.setPromptText(getString(R.string.response_loan_amount) + " " + Integer.toString(proposal.getAmountBorrowed()) + " dollars");

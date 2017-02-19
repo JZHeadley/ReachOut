@@ -23,6 +23,7 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
     private static final String TAG = "MyProposalsAdapter";
     private ArrayList<Proposal> proposals;
 
+
     public MyProposalsAdapter(ArrayList<Proposal> proposals) {
         this.proposals = new ArrayList<>(proposals);
     }
@@ -33,6 +34,7 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
             .from(parent.getContext())
             .inflate(R.layout.layout_proposal_card, parent, false);
         return new MyProposalViewHolder(itemView);
+
     }
 
     @Override
@@ -43,6 +45,15 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
         // holder.amountToBeBorrowed.setText(proposal.getAmountBorrowed());
         holder.progressBar.setMax(850);
         holder.progressBar.setProgress(Integer.parseInt(proposal.getCreditScore()));
+
+        if (Integer.parseInt(proposal.getCreditScore())>560){
+            holder.progressStatus.setText("Low Risk");
+        }
+        else if (Integer.parseInt(proposal.getCreditScore()) > 280){
+            holder.progressStatus.setText("Medium Risk");
+        }
+        else {holder.progressStatus.setText("High Risk");}
+
         if (proposal.getPictures().size() > 1) {
             ArrayList<String> pictures = new ArrayList<>(proposal.getPictures());
             pictures.remove(0);
@@ -108,6 +119,7 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
         // TextView amountToBeBorrowed;
         ProgressBar progressBar;
         TextView itemRequested;
+        TextView progressStatus;
 
         public MyProposalViewHolder(View itemView) {
             super(itemView);
@@ -116,6 +128,8 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressbar);
             // amountToBeBorrowed = (TextView) itemView.findViewById(R.id.proposal_amount_to_borrow);
             itemRequested = (TextView) itemView.findViewById(R.id.proposal_item_requested);
+            progressStatus = (TextView) itemView.findViewById(R.id.progressStatus);
+
         }
     }
 }

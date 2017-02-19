@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.ModelSingleton;
-import com.jzheadley.reachout.models.ModelUtilities;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -15,12 +14,12 @@ public class MainActivity extends BaseActivity {
         ModelSingleton.getInstance().synchWithDB();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        while(true) {
+   /*     while(true) {
             if (ModelUtilities.getCurrentUser() == null)
                 startActivity(new Intent(this, LoginActivity.class));
             else
                 break;
-        }
+        }*/
     }
 
 
