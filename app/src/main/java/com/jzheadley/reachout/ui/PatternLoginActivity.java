@@ -1,11 +1,15 @@
 package com.jzheadley.reachout.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.amnix.materiallockview.MaterialLockView;
+import com.jzheadley.reachout.App;
 import com.jzheadley.reachout.R;
 import com.jzheadley.reachout.models.dataobjects.Person;
+
+import java.util.List;
 
 public class PatternLoginActivity extends BaseActivity {
 
@@ -18,16 +22,26 @@ public class PatternLoginActivity extends BaseActivity {
         setContentView(R.layout.activity_pattern_login);
         final MaterialLockView materialLockView = (com.amnix.materiallockview.MaterialLockView) findViewById(R.id.pattern);
         person = (Person) getIntent().getExtras().get("PossibleUser");
-
-        if (person.getPassHash().equals(Integer.toString(materialLockView.getPattern().hashCode()))) {
-            if (person.isLeader()) {
+        materialLockView.setOnPatternListener(new MaterialLockView.OnPatternListener() {
+            @Override
+            public void onPatternDetected(List<MaterialLockView.Cell> pattern, String SimplePattern) {
+                super.onPatternDetected(pattern, SimplePattern);
                 startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
-            } else {
-                startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
+                SharedPreferences preferences = App.get().getSharedPreferences("ReachOut", MODE_PRIVATE);
+                preferences.edit().putString("personId", person.getPersonId()).apply();
+                /*  if (person.getPassHash().equals(Integer.toString(materialLockView.getPattern().hashCode()))) {
+                    if (person.isLeader()) {
+                        startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), BorrowerActivity.class));
+                    }
+                } else {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }*/
             }
-        } else {
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        }
+        });
+
+
 /*        ((Button) findViewById(R.id.login_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

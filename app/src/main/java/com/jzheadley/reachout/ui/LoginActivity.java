@@ -19,12 +19,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ModelSingleton.getInstance().synchWithDB();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_person_faces);

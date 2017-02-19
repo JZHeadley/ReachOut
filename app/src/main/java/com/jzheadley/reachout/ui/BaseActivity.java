@@ -4,17 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.jzheadley.reachout.Constants;
 import com.jzheadley.reachout.R;
-import com.jzheadley.reachout.models.ModelSingleton;
-import com.jzheadley.reachout.models.dataobjects.Person;
-
-import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
@@ -23,7 +17,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Constants constants = new Constants();
     }
 
     @Override
