@@ -1,7 +1,6 @@
 package com.jzheadley.reachout.ui;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +15,7 @@ import com.jzheadley.reachout.views.ThreeButtonView;
 import java.sql.Date;
 
 public class ViewProposalActivity extends BaseActivity {
+    private static final String TAG = "ViewProposalActivity";
     ThreeButtonView loanAmount;
     ThreeButtonView loanRepayAmount;
     ThreeButtonView moneyMaking;
@@ -23,8 +23,6 @@ public class ViewProposalActivity extends BaseActivity {
     ThreeButtonView loanPurchase;
     ThreeButtonView reason;
     Button b1,b2;
-    private static final String TAG = "ViewProposalActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +87,7 @@ public class ViewProposalActivity extends BaseActivity {
         reason.setPromptText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         reason.setEditTextText(getString(R.string.response_loan_how_help) + " " + proposal.getPlanDescription());
         ModelSingleton.getInstance().synchWithDB();
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

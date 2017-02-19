@@ -1,16 +1,10 @@
 package com.jzheadley.reachout;
 
-import com.jzheadley.reachout.models.dataobjects.Person;
-import com.jzheadley.reachout.models.dataobjects.Proposal;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class Constants {
 
     public static final String IMGUR_CLIENT_ID = "ce54a4872a6b508";
     public static final String IMGUR_SECRET = "87b0d52abe1f00675653528a8616664b018774b0";
-    public Set<Person> people = new HashSet<>();
+  /*  public Set<Person> people = new HashSet<>();
     public Set<Proposal> proposals = new HashSet<>();
 
     public Constants() {
@@ -46,5 +40,5 @@ public class Constants {
         joeIrrigation.getEndorsingLeaders().add(mike.getPersonId());
 
     }
-
+*/
 }

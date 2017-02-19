@@ -172,8 +172,10 @@ public class ThreeButtonView extends LinearLayout {
 
     public void setHint(String string) {
         ((TextInputLayout) findViewById(R.id.hint)).setHint(string);
-
     }
 
+    public void setEditTextWidth(int integer) {
+        threeButtonEditText.setWidth(integer);
+    }
 }
 
