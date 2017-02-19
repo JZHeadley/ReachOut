@@ -61,9 +61,17 @@ public class MyProposalsAdapter extends RecyclerView.Adapter<MyProposalsAdapter.
                 public void onClick(View v) {
                     Intent proposalIntent = null;
 
-                    proposalIntent = new Intent(v.getContext(), ViewProposalActivity.class);
-                    proposalIntent.putExtra("singleProposal", proposal);
-                    holder.itemView.getContext().startActivity(proposalIntent);
+                    if(InvestorActivity.returnIsInvestor()){
+                        proposalIntent = new Intent(v.getContext(), ViewInvestorProposalActivity.class);
+                        proposalIntent.putExtra("singleProposal", proposal);
+                        holder.itemView.getContext().startActivity(proposalIntent);
+                    }
+                    else {
+                        proposalIntent = new Intent(v.getContext(), ViewProposalActivity.class);
+                        proposalIntent.putExtra("singleProposal", proposal);
+                        holder.itemView.getContext().startActivity(proposalIntent);
+                    }
+
                     /*
                     if (proposal.getState() == 3) {
                         cashIntent = new Intent(v.getContext(), CashActivity.class);

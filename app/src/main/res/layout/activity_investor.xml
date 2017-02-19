@@ -19,7 +19,7 @@ android:layout_width="match_parent">
         android:text="Proposals: " />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_proposals"
+        android:id="@+id/my_investment_proposals"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
