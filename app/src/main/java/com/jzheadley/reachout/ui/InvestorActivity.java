@@ -17,15 +17,22 @@ import java.util.ArrayList;
 
 public class InvestorActivity extends BaseActivity {
     private static final String TAG = "InvestorActivity";
+    public static boolean isInvestor = false;
+    public void setIsInvestor(boolean isInvestor){
+        this.isInvestor = isInvestor;
+    }
 
 
     private RecyclerView.Adapter adapter;
 
+    public static boolean returnIsInvestor () { return isInvestor;}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isInvestor = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_investor);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_proposals);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_investment_proposals);
         recyclerView.setHasFixedSize(true);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

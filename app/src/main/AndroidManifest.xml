@@ -46,6 +46,8 @@
         <activity
             android:name=".ui.ViewProposalActivity"
             android:parentActivityName=".ui.BorrowerActivity" />
+        <activity android:name=".ui.ViewInvestorProposalActivity"
+            android:parentActivityName=".ui.InvestorActivity"/>
         <activity
             android:name=".ui.SetPatternPassword"
             android:parentActivityName=".ui.RegisterActivity" />
