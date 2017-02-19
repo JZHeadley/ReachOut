@@ -9,7 +9,7 @@
     tools:context="com.jzheadley.reachout.ui.ViewInvestorProposalActivity">
 
     <TextView
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:text="Investor Proposal Information"
         android:textAlignment="center"
@@ -19,8 +19,8 @@
     <com.jzheadley.reachout.views.ThreeButtonView
         android:clickable="false"
         android:id="@+id/three_button_get_loan_amount"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
         android:inputType= "number"/>
 
     <com.jzheadley.reachout.views.ThreeButtonView
@@ -52,13 +52,13 @@
         android:id="@+id/three_button_get_how_money_help"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:inputType= "text"/>
+        android:inputType= "textCapSentences"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
-        <Button
+       <!-- <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/dollar_sign"
@@ -67,7 +67,26 @@
             android:onClick="onClick"
             android:contentDescription="dollar"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true" /> -->
+
+        <Button
+            android:id="@+id/angry_btn"
+
+            android:text="Invest"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:background="@drawable/invest_btn"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp" />
+
     </RelativeLayout>
 
 
